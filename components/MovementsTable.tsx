@@ -49,7 +49,7 @@ const MovementsTable = () => {
   </section>
 
     </div>
-  )
-}
+  );
+};
 
-export default MovementsTable
+export default MovementsTable;
