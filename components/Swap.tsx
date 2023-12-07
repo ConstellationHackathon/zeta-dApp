@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import InitialModal from "./InitialModal";
+import Image from "next/image";
 
 const Swap = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,9 +15,12 @@ const Swap = () => {
 
     return (
         <div className="flex flex-col justify-center items-center w-full h-screen bg-[#f4f4f4] text-black gap-8">
-            <div>
-                Logo
-            </div>
+            <Image
+                src="/assets/logo.png"
+                width={100}
+                height={100}
+                alt="zeta Logo"
+            />
             <div className="flex flex-col w-[640px] bg-[#fafafa] shadow-md p-[32px] rounded-[24px] gap-2">
                 <div className="flex flex-col w-full bg-[#E84142] text-white p-[24px] rounded-tl-[16px] rounded-tr-[16px]">
                     <div className="flex w-full justify-between">
