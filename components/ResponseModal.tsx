@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import { IconClose } from "./Icon";
 import Modal from "react-modal";
+import { FETCH_ALL_AVAX } from "@/graphql/FetchSenderInfo";
+import { useQuery } from "@apollo/client";
 
 interface ResponseModalProps {
   closeModal: () => void;
@@ -8,8 +10,17 @@ interface ResponseModalProps {
 Modal.setAppElement('#__next');
 const ResponseModal: React.FC<ResponseModalProps> = ({ closeModal }) => {
   const [scanOn, setScanOn] = useState(true);
-
-
+  const [senderInfo, setSenderInfo] = useState<string>('');
+  const { data } = useQuery(FETCH_ALL_AVAX, { variables: { senderInfo } });
+  useEffect(() => {
+    console.log('on mount component');
+    
+    console.log('sender info is ', data);
+  }, [data])
+  
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSenderInfo(event.target.value);
+  };
   if(scanOn) {
     return (
       <Modal
@@ -22,7 +33,7 @@ const ResponseModal: React.FC<ResponseModalProps> = ({ closeModal }) => {
         <div className="flex flex-col w-full gap-1 items-center">
           <div>This is the status of your last transaction</div>
         </div>
-        
+
         <button className="absolute right-[16px] top-[16px]" onClick={closeModal}>
           <IconClose />
         </button>
@@ -56,6 +67,8 @@ const ResponseModal: React.FC<ResponseModalProps> = ({ closeModal }) => {
             type="text"
             placeholder="Your Address (e.g. 0x123...)"
             className="w-full p-3 opacity-80 bg-neutral-100 rounded-2xl text-2xl font-normal font-['Montserrat']"
+            value={senderInfo} // Vincula el valor del input al estado senderInfo
+            onChange={handleInputChange}
           />
         </div>
       </div>
