@@ -1,7 +1,7 @@
 import { use, useEffect, useState } from "react";
 import { IconClose } from "./Icon";
 import Modal from "react-modal";
-import { FETCH_ALL_AVAX } from "@/graphql/FetchSenderInfo";
+import { FETCH_ADDRESS_AVAX } from "@/graphql/FetchSenderInfo";
 import { useQuery } from "@apollo/client";
 
 interface ResponseModalProps {
@@ -11,7 +11,7 @@ Modal.setAppElement('#__next');
 const ResponseModal: React.FC<ResponseModalProps> = ({ closeModal }) => {
   const [scanOn, setScanOn] = useState(true);
   const [senderInfo, setSenderInfo] = useState<string>('');
-  const { data } = useQuery(FETCH_ALL_AVAX, { variables: { senderInfo } });
+  const { data } = useQuery(FETCH_ADDRESS_AVAX, { variables: { senderInfo } });
   useEffect(() => {
     console.log('on mount component');
     
