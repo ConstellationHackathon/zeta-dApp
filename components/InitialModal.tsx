@@ -8,7 +8,7 @@ const InitialModal: React.FC<{ closeModal: () => void }> =  ({ closeModal }) => 
             onRequestClose={closeModal}
             contentLabel="Example Modal"
             className="fixed inset-0 flex flex-col gap-[48px] p-[24px] rounded-[32px] shadow-lg m-auto w-[700px] h-[600px] bg-[#fafafa] text-black z-10 text-2xl justify-center"
-            overlayClassName="fixed inset-0 bg-[#E84142] bg-opacity-20"
+            overlayClassName="fixed inset-0 bg-black bg-opacity-20"
         >
             <div className='flex flex-col w-full gap-1 items-center'>
                 <div>Send 0.055 BTC to the address</div>

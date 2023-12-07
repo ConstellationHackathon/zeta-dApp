@@ -1,9 +1,11 @@
-import React, {useState} from "react";
+import React, {useState, ChangeEvent} from "react";
 import InitialModal from "./InitialModal";
 import Image from "next/image";
 
+
 const Swap = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedCoin, setSelectedCoin] = useState<string>("AVAX1");
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -11,6 +13,10 @@ const Swap = () => {
     
     const closeModal = () => {
         setIsModalOpen(false);
+    };
+
+    const handleCoinChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        setSelectedCoin(event.target.value);
     };
 
     return (
@@ -25,11 +31,32 @@ const Swap = () => {
                 <div className="flex flex-col w-full bg-[#E84142] text-white p-[24px] rounded-tl-[16px] rounded-tr-[16px]">
                     <div className="flex w-full justify-between">
                         <div>From</div>
-                        <div>AVAX</div>
+                        <div>
+                            AVAX
+                        </div>
                     </div>
-                    <div className="flex w-full justify-between">
+                    <div className="flex w-full justify-between items-center">
                         <div>0.055</div>
-                        <div>AVAX</div>
+                        <div className="bg-[#E84142] px-4 py-2 border-2 border-white rounded-[12px] ">
+                            <label htmlFor="coinSelectFrom" />
+                            <select
+                                id="coinSelectFrom"
+                                value={selectedCoin}
+                                onChange={handleCoinChange}
+                                aria-label="Select Coin"
+                                className="bg-transparent"
+                            >
+                                <option value="AVAX" className="text-black">
+                                    AVAX
+                                </option>
+                                <option value="BTC" className="text-black">
+                                    BTC
+                                </option>
+                                <option value="ETH" className="text-black">
+                                    ETH
+                                </option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div className="flex flex-col w-full bg-[#E84142] text-white p-[24px] rounded-bl-[16px] rounded-br-[16px] gap-1">
@@ -37,9 +64,28 @@ const Swap = () => {
                         <div>To (estimated)</div>
                         <div>Ethereum</div>
                     </div>
-                    <div className="flex w-full justify-between gap-1">
+                    <div className="flex w-full justify-between items-center">
                         <div>1.0124093</div>
-                        <div>ETH</div>
+                        <div className="bg-[#E84142] px-4 py-2 border-2 border-white rounded-[12px] ">
+                            <label htmlFor="coinSelectTo" />
+                            <select
+                                id="coinSelectTo"
+                                value={selectedCoin}
+                                onChange={handleCoinChange}
+                                aria-label="Select Coin"
+                                className="bg-transparent"
+                            >
+                                <option value="ETH" className="text-black">
+                                    ETH
+                                </option>
+                                <option value="BTC" className="text-black">
+                                    BTC
+                                </option>
+                                <option value="AVAX" className="text-black">
+                                    AVAX
+                                </option>
+                            </select>
+                    </div>
                     </div>
                 </div>
 
