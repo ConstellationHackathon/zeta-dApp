@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import InitialModal from "./InitialModal";
 
 const Swap = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,9 +41,11 @@ const Swap = () => {
 
                 <button
                     className="bg-black text-white rounded-full p-2 font-semibold"
+                    onClick={openModal}
                 >
                     Exchange now 
                 </button>
+                {isModalOpen && <InitialModal closeModal={closeModal} />}
 
                 <div className="text-center">
                     Send to another address
@@ -59,7 +62,6 @@ const Swap = () => {
                     </div>
                 </div>
             </div>
-            
         </div>
     );
 };

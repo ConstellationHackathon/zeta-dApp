@@ -1,13 +1,11 @@
 import { IconClose } from './Icon'
 import Modal from 'react-modal';
 
-Modal.setAppElement('#root');
-
-const InitialModal: React.FC =  () => {    
+const InitialModal: React.FC<{ closeModal: () => void }> =  ({ closeModal }) => {    
     return (
         <Modal
-            isOpen={}
-            onRequestClose={}
+            isOpen={true}
+            onRequestClose={closeModal}
             contentLabel="Example Modal"
             className="fixed inset-0 flex flex-col gap-4 p-[24px] rounded-[32px] shadow-lg m-auto w-[700px] h-[600px] bg-[#fafafa] z-10"
             overlayClassName="fixed inset-0 bg-primary bg-opacity-80"
@@ -29,6 +27,11 @@ const InitialModal: React.FC =  () => {
                 className='bg-black text-white rounded-full p-2 font-semibold'
             >
                 Done
+            </button>
+            <button
+                onClick={closeModal}
+            >
+                <IconClose/>
             </button>
         </Modal>
     )
