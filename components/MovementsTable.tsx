@@ -1,5 +1,6 @@
 import { senderEvents  } from '@/graphql/FetchSenderInfo'
 import { useQuery } from '@apollo/client';
+import { ethers } from "ethers";
 import React from 'react'
 const MovementsTable = () => {
     const transactions = []
@@ -7,16 +8,16 @@ const MovementsTable = () => {
 
     if (loading) return 'Loading...';
     console.log(data)
-    data.avaxReceiveds.map((item, dex)=>{
-       const _item= {}
+    data.avaxReceiveds.map((item, index)=>{
+       const _item = {}
         _item.address = item.sender
-        _item.from = ""
-        _item.avax = ""
-        _item.to = ""
+        _item.from = "Fuji"
+        _item.avax = ethers.formatEther(item.tokenAmount);
+        _item.to = "Sepolia"
         _item.eth = ""
         _item.totalReceived = ""
-        _item.status = ""
-        _item.transactionDate = ""
+        _item.status = "pending"
+        _item.transactionDate = new Date(item.timestamp * 1000).toString()
         transactions.push(_item)
     })
   return (
