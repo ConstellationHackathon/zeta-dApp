@@ -1,3 +1,4 @@
+import MovementsTable from "@/components/MovementsTable";
 import type { NextPage } from "next";
 import React, { useState } from "react";
 
@@ -83,6 +84,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </main>
+      <MovementsTable />
     </>
   );
 };
