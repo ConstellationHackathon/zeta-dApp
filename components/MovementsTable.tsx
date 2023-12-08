@@ -1,14 +1,19 @@
-import { senderEvents  } from '@/graphql/FetchSenderInfo'
+import { AvaxSenderEvents  } from '@/graphql/FetchSenderInfo'
 import { useQuery } from '@apollo/client';
 import { ethers } from "ethers";
-import React from 'react'
+import React, { useEffect } from 'react'
 const MovementsTable = () => {
     const transactions = []
-    const { loading, error, data } = useQuery(senderEvents);
-
+    const { loading, error, data } = useQuery(AvaxSenderEvents);
+    useEffect(() => {
+      console.log(data);
+      console.log('error is ', error);
+      
+    }, [data, error])
+    
     if (loading) return 'Loading...';
     console.log(data)
-    data.avaxReceiveds.map((item, index)=>{
+    data?.avaxReceiveds.map((item, index)=>{
        const _item = {}
         _item.address = item.sender
         _item.from = "Fuji"
