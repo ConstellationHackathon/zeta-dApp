@@ -1,30 +1,14 @@
 import { gql } from "@apollo/client";
 
-export const senderEvents = gql`
-    query MyQuery {
-      avaxPriceInUSDs {
-        price
-        blockTimestamp
-        timestamp
-        transactionHash
-        sender
-        id
-      }
+export const AvaxSenderEvents = gql`
+    query AvaxSenderEvents {
       avaxReceiveds {
-        sender
+        transactionId
+        transactionHash
         tokenAmount
-        transactionHash
-        timestamp
-        id
-      }
-      amountSentInUSDs {
-        amountSent
-        blockTimestamp
-        transactionHash
         sender
         id
         timestamp
-        blockNumber
       }
     }
 `;
