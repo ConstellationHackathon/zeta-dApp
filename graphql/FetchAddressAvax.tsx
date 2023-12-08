@@ -1,13 +1,13 @@
 import { gql } from "@apollo/client";
 
-export const FETCH_ADDRESS_AVAX = gql`
-  query GetAllAvax($sender: String!) {
+export const AvaxFetchAddress = gql`
+  query AvaxFetchAddress($sender: String!) {
     amountSentInUSDs(where: { sender: $sender }) {
       sender
       timestamp
       amountSent
     }
-    avaxReceiveds {
+    avaxReceiveds (where: { sender: $sender }) {
       sender
       timestamp
       tokenAmount
