@@ -207,7 +207,7 @@ Enjoy using FastSwaps and stay connected with the exciting world of tech and web
 
 <!-- CONTACT -->
 
-# FastSwaps Team
+# Zeta Team
 
 Angela Ocando - [@ocandocrypto](https://twitter.com/ocandocrypto) - ocandocrypto@proton.me - PM 
 <br />
