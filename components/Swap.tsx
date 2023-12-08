@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent } from "react";
 import InitialModal from "./InitialModal";
 import Image from "next/image";
-import ResponseModal from "./responseModal";
+import ResponseModal from "./ResponseModal";
 
 const Swap = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
