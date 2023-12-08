@@ -15,25 +15,23 @@
 <br />
 <div align="center">
   <a href="https://github.com/ConstellationHackathon">
-    <img src="thumbnail-zeta.jpeg" alt="Logo" width="1920" height=500">
+    <img src="thumbnail-zeta.jpeg" alt="Logo" width="2000" height=300">
   </a>
 
- <h3 align="center"> Jump in, jump safe, swap crypto</h3>
-
+ <h3 align="center"> Jump in, jump safe, swap crypto 📍</h3>
   <p align="center">
 
   [Chainlink Constellation Hackathon](https://chain.link/hackathon)
 
-   <!--
-
-  <a href="#-about-the-project">View the Demo</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-technologies">Report a Bug</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-getting-started">Request a Feature</a>&nbsp;&nbsp;&nbsp;
-  
-    <a href="https://github.com/sheva323/IstanbulHackathon">View Demo</a>
-    -->
+ <br />
+    <a href="https://github.com/ConstellationHackathon"><strong>Explore the docs »</strong></a>
+    <br />
+    <a href="https://github.com/ConstellationHackathon">View Demo</a>
+    ·
+    <a href="https://github.com/ConstellationHackathon">Report Bug</a>
+    ·
+    <a href="https://github.com/ConstellationHackathon">Request Feature</a>
   </p>
-
 </div>
 
 <br />
@@ -48,9 +46,12 @@
 2. [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
-3. [Contact](#contact)
+3. [Usage](#usage)
 4. [Roadmap](#roadmap)
-
+5. [Contributing](#contributing)
+6. [Licence](#license)
+7. [Contact](#contact)
+8. [Acknowledgments](#acknowledgments)
 
 <br />
 
@@ -59,34 +60,52 @@
 
 # About The Project
 
-<!--  br />
+<br />
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://github.com/ConstellationHackathon)
+
 <br /> 
 
-First mobile cross-chain exchange. Our platform empowers users to send tokens effortlessly from one network to another, all within the familiar environment your phone, eliminating the need to connect your wallet directly.
 
-By eliminating the need for direct wallet connections, FastSwaps not only enhances user convenience but also prioritizes security, providing a seamless and secure gateway for individuals to navigate the crypto world with ease.
+<!-- ACÁ DEBE IR EL LINK QUE CORRE EL PRODUCTO -->
+
+Zeta is a cryptocurrency exchange that allows you to jump between different blockchain networks easily and securely. With Zeta, you don't need KYC or intermediaries. You only need to indicate which wallet you want to receive your money in, without connecting your wallet and exposing yourself to security risks. Zeta is the ideal platform for users who want to take advantage of the opportunities of cryptocurrencies, regardless of their level of experience or knowledge. Zeta is the easiest jump.
+
 
 The entire process is outlined in the following diagram: 
 
-<img src="images/about.png" alt="Logo" width="1000" height="300">
+<br /> 
 
--->
+<a href="https://github.com/ConstellationHackathon">
+    <img src="zeta-workflow.jpg" alt="Logo" width="1080" height=550">
+  </a>
+
+<br />
 
 ## Process Explanation:
 
-1. **User Initiation:**
-Users select the destination for their funds without the need for a connected wallet.
 
-2. **Endpoint Validation:**
-A validation endpoint ensures sufficient liquidity on one side before providing the user with the destination address. Simultaneously, it generates wallet and swap information for user execution.
+**1. User Initiation:**
 
-3. **User Transaction:**
-Users send funds to the provided wallet address. A centralized watcher (for the hackathon MVP) monitors the transaction.
+Users seamlessly transfer their funds between different blockchain networks (e.g., Avax to Ethereum), ensuring a secure and private experience. By avoiding the need to connect their wallets, users benefit from increased security and privacy. Additionally, they receive the most competitive rate available through our fedge pricing system.
 
-4. **Watcher Functionality:**
-The watcher validates the incoming transaction and extracts liquidity from the other network. Using the Cow Protocol and Uniswap V4, it executes swaps, broadening the scope of available options for users. Additionally, CELO is incorporated into the process, utilizing addresses used in transaction processes. CELO returns 50% of the generated YIELD from our pools annually, serving as an incentivized reward for ecosystem engagement.
+**2. User Transaction:**
+
+To initiate a transaction, users send funds to the provided wallet address and subsequently inform us of the sending wallet address. This allows Zeta to connect the user's action with the relevant on-chain smart contract, ensuring a smooth and efficient transaction process.
+
+**3. On-chain Smart Contract (Price Feed + CCIP):**
+
+Upon receiving the designated amount of token A, the smart contract leverages Chainlink Price Feed from the oracle to determine the equivalent amount of token B to be delivered. This information is then relayed to Chain II through Cross-Chain Interoperability Protocol (CCIP) messaging.
+
+**4. On-chain Smart Contract II (Price Feed + CCIP):**
+
+The smart contract on Chain II processes the received message, extracts the intended recipient and token amount, and initiates the token B sending function. This ensures the seamless and accurate execution of the cross-chain transaction.
+
+**5. Transaction**
+
+The Graph platform records all transaction events, including user funds received, providing an endpoint for displaying liquidity and execution details. While this information is readily available, user access is optional and does not impact the transaction flow.
+
+**Note:** During the MVP phase of this project, Zeta acts as the sole liquidity provider. All transactions will be executed upon user initiation and confirmation.
 
 
 <!--  AQUÍ VA EL DEMOOOO -->
@@ -215,6 +234,8 @@ Sebastian Guaqueta - [@scguaquetam](https://twitter.com/scguaquetam) - sheva3232
 <br />
 Jonathan Diaz - [@jontdiaz](https://twitter.com/jonthdiaz) - JonthDiaz@gmail.com - Backend 
 <br />
+Miguel Angel - [@MAB015](https://twitter.com/MAB015) - miguellangellbol@gmail.com  - UI/UX 
+<br />
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -266,16 +287,37 @@ And with the vision to  make crypto more accessible and inclusive, simplifying t
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- ACKNOWLEDGMENTS -->
+
+# Acknowledgments
+
+
+We would like to express our gratitude to the following resources that have been invaluable in the development of Stake Garden:
+
+* [1inch Docs](https://portal.1inch.dev/documentation/authentication)
+* [Metamask SDK](https://docs.metamask.io/wallet/how-to/use-sdk/)
+* [The Graph Docs](https://thegraph.com/docs)
+* [Nouns Artwork](https://nouns.center/assets)
+
+
+<!-- * [Filecoin Docs](https://docs.filecoin.io/) -->
+
+These resources have provided valuable insights, tools, and inspiration throughout the development process. We appreciate their contributions to the web development community.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 
 <!-- MARKDOWN LINKS  -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/sheva323/IstanbulHackathon.svg?style=for-the-badge&color=yellow
+[contributors-shield]: https://img.shields.io/github/contributors/sheva323/IstanbulHackathon.svg?style=for-the-badge&color=red
+
 [contributors-url]: https://github.com/sheva323/IstanbulHackathon/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/sheva323/IstanbulHackathon.svg?style=for-the-badge&color=blue
+[forks-shield]: https://img.shields.io/github/forks/sheva323/IstanbulHackathon.svg?style=for-the-badge&color=white
 [forks-url]: https://github.com/sheva323/IstanbulHackathon/network/members
-[stars-shield]: https://img.shields.io/github/stars/sheva323/IstanbulHackathon.svg?style=for-the-badge&color=yellow
+[stars-shield]: https://img.shields.io/github/stars/sheva323/IstanbulHackathon.svg?style=for-the-badge&color=red
 [stars-url]: https://github.com/sheva323/IstanbulHackathon/stargazers
-[issues-shield]: https://img.shields.io/github/issues/sheva323/IstanbulHackathon.svg?style=for-the-badge&color=blue
+[issues-shield]: https://img.shields.io/github/issues/sheva323/IstanbulHackathon.svg?style=for-the-badge&color=white
 [issues-url]: https://github.com/sheva323/IstanbulHackathon/issues
 
 <!-- 
@@ -284,7 +326,7 @@ And with the vision to  make crypto more accessible and inclusive, simplifying t
 
 <!-- IMAGES -->
 
-[product-screenshot]: images/product.png
+[product-screenshot]: product.png
 
 <!-- SPONSORS -->
 
