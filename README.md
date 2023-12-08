@@ -116,6 +116,8 @@ The Graph platform records all transaction events, including user funds received
 
 # Built With
 
+<!--
+
 
 FastSwaps is proudly supported by the following sponsors:
 
@@ -125,7 +127,7 @@ FastSwaps is proudly supported by the following sponsors:
 
 Deployed using Near BOS, our frontend interfaces with three endpoints critical for watcher functionality and validating liquidity pools to execute transactions securely.
 
-<!-- Comment de Uso de NEAR BOS -->
+<!-- Comment de Uso de NEAR BOS 
 
 **Protocol and Networks:**
 
@@ -134,7 +136,7 @@ Deployed using Near BOS, our frontend interfaces with three endpoints critical f
 
 <!-- 
 [![Push][Push.org]][Push-url] Cow
-[![Push][Push.org]][Push-url] -->
+[![Push][Push.org]][Push-url] 
 
 
 Cow Protocol and Uniswap V4 are employed for swaps, demonstrating versatility on Gorli, Polygon, and CELO networks during the hackathon.
@@ -144,7 +146,7 @@ You can check web3 and protocol integratiosn in this repo and partners detail ex
 https://github.com/jonthdiaz/fastSwaps
 
 
-<!-- Comment de Uso de Cow Swap e info de repo -->
+Comment de Uso de Cow Swap e info de repo
 
 **User Experience and Design:**
 
@@ -159,7 +161,7 @@ This is just an example of how we implement Nouns Vibes using Lil Noun Asset Lib
   </a>
 
 
-<!-- Comment de presentación y rcueros usadodsS -->
+ Comment de presentación y rcueros usadodsS
 
 By implementing this decentralized cross-chain exchange with expanded protocol support, including Uniswap V4 and CELO, we revolutionize the way users transfer funds across networks. Our approach ensures security, efficiency, and accessibility across diverse platforms, while the CELO integration provides an attractive annual incentive for users engaging with our ecosystem.
 
@@ -178,13 +180,14 @@ CELO
 These powerful tools and frameworks have helped us create a seamless user experience and ensure the scalability and reliability of our platform.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+-->
 
 
 <!-- GETTING STARTED   -->
 
 # Getting Started
 
+<!--
 To get started with FastSwaps, follow these steps:
 
 1. Explore the possible swaps and select your prefered one.
@@ -223,6 +226,8 @@ Enjoy using FastSwaps and stay connected with the exciting world of tech and web
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+-->
 
 <!-- CONTACT -->
 
@@ -271,6 +276,8 @@ These resources have provided valuable insights, tools, and inspiration througho
 <!-- ROADMAP -->
 # Roadmap
 
+<!--
+
 Today through FastSwaps we to send tokens effortlessly from one network to another, without the need to connect your wallet direct and without no KYC.
 
 As working Plan
@@ -287,11 +294,13 @@ And with the vision to  make crypto more accessible and inclusive, simplifying t
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+-->
+
 <!-- ACKNOWLEDGMENTS -->
 
 # Acknowledgments
 
-
+<!--
 We would like to express our gratitude to the following resources that have been invaluable in the development of Stake Garden:
 
 * [1inch Docs](https://portal.1inch.dev/documentation/authentication)
@@ -300,11 +309,13 @@ We would like to express our gratitude to the following resources that have been
 * [Nouns Artwork](https://nouns.center/assets)
 
 
-<!-- * [Filecoin Docs](https://docs.filecoin.io/) -->
+<!-- * [Filecoin Docs](https://docs.filecoin.io/) 
 
 These resources have provided valuable insights, tools, and inspiration throughout the development process. We appreciate their contributions to the web development community.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+-->
 
 
 
