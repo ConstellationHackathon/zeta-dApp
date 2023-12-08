@@ -15,7 +15,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/ConstellationHackathon">
-    <img src="images/Thumbnail-zeta.jpeg" alt="Logo" width="1920" height=300">
+    <img src="thumbnail-zeta.jpeg" alt="Logo" width="1920" height=500">
   </a>
 
  <h3 align="center"> Jump in, jump safe, swap crypto</h3>
