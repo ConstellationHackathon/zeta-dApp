@@ -6,11 +6,13 @@ export const AvaxFetchAddress = gql`
       sender
       timestamp
       amountSent
+      transactionHash
     }
     avaxReceiveds (where: { sender: $sender }) {
       sender
       timestamp
       tokenAmount
+      transactionHash
     }
   }
 `;
