@@ -1,27 +1,36 @@
-import { senderEvents  } from '@/graphql/FetchSenderInfo'
+import { AvaxSenderEvents  } from '@/graphql/FetchSenderInfo'
+import { SepoliaReceiveMsg } from '@/graphql/FetchAddressSepolia'
 import { useQuery } from '@apollo/client';
-import React from 'react'
+import { ethers } from "ethers";
+import React, { useEffect } from 'react'
 const MovementsTable = () => {
     const transactions = []
-    const { loading, error, data } = useQuery(senderEvents);
-
+    const { loading, error, data } = useQuery(AvaxSenderEvents);
+    useEffect(() => {
+      console.log(data);
+      console.log('error is ', error);
+      
+    }, [data, error])
+    
     if (loading) return 'Loading...';
     console.log(data)
-    data.avaxReceiveds.map((item, dex)=>{
-       const _item= {}
+    data?.avaxReceiveds.map((item, index)=>{
+       const _item = {}
+        _item.transactionId = item.transactionId
         _item.address = item.sender
-        _item.from = ""
-        _item.avax = ""
-        _item.to = ""
+        _item.from = "Fuji"
+        _item.avax = ethers.formatEther(item.tokenAmount);
+        _item.to = "Sepolia"
         _item.eth = ""
         _item.totalReceived = ""
-        _item.status = ""
-        _item.transactionDate = ""
+        _item.status = "pending"
+        _item.transactionDate = new Date(item.timestamp * 1000).toString()
         transactions.push(_item)
     })
   return (
     <div className="movement-table flex flex-col justify-center items-center bg-[#fafafa] shadow-sm p-[16px] rounded-[16px] gap-2 w-full">
-  <section  className="grid grid-cols-8 w-[1024px] bg-[#fafafa] shadow-md p-[16px] rounded-[8px]">
+  <section  className="grid grid-cols-9 w-[1024px] bg-[#fafafa] shadow-md p-[16px] rounded-[8px]">
+      <div className="flex flex-col gap-1 items-center justify-center">Transaction Id</div>
       <div className="flex flex-col gap-1 items-center justify-center">Address</div>
       <div className="flex flex-col gap-1 items-center justify-center">From</div>
       <div className="flex flex-col gap-1 items-center justify-center">Avax</div>
@@ -34,8 +43,9 @@ const MovementsTable = () => {
   </section>
   <section>
        {transactions.map((item, index) => (
-       <div key={index}  className="detail-transaction grid grid-cols-8 w-[1024px] bg-[#fafafa] shadow-md p-[16px] rounded-[8px]">
-           <div className="flex flex-col gap-1 items-center justify-center truncate overflow-hidden ..." title={item.address}>{item.address}</div>
+       <div key={index}  className="detail-transaction grid grid-cols-9 w-[1024px] bg-[#fafafa] shadow-md p-[16px] rounded-[8px]">
+        <div className="flex flex-col gap-1 items-center justify-center truncate overflow-hidden ...">{item.transactionId}</div>
+        <div className="flex flex-col gap-1 items-center justify-center truncate overflow-hidden ..." title={item.address}>{item.address}</div>
         <div className="flex flex-col gap-1 items-center justify-center">{item.from}</div>
         <div className="flex flex-col gap-1 items-center justify-center">{item.avax}</div>
         <div className="flex flex-col gap-1 items-center justify-center">{item.to}</div>
@@ -48,7 +58,7 @@ const MovementsTable = () => {
   </section>
 
     </div>
-  )
-}
+  );
+};
 
-export default MovementsTable
+export default MovementsTable;
