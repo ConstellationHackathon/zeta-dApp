@@ -1,4 +1,4 @@
-import { IconClose } from './Icon'
+import { IconAvalanche, IconEthereum, IconClose, IconRight } from './Icon'
 import Modal from 'react-modal';
 interface ResponseModalProps {
     closeModal: () => void;
@@ -15,21 +15,35 @@ const InitialModal: React.FC<ResponseModalProps> =  ({ closeModal, onDoneButton 
             overlayClassName="fixed inset-0 bg-black bg-opacity-20"
             appElement={document.getElementById('root') as HTMLElement}
         >
-            <div className='flex flex-col w-full gap-1 items-center'>
-                <div>Send xxxx AVAX to the address</div>
-                <div>0x6D824716d4A7a20Bdf95b3286530240bAE3Bf7C0</div>
-                <div className='flex gap-3'>
-                    <div>AVAX</div>
-                    <div>-</div>
-                    <div>Ethereum</div>
+            <div className='flex flex-col w-full gap-3 items-center'>
+                <div className='flex gap-2'>
+                    Send 
+                    <span className='font-semibold'>XXXX</span>
+                    <IconAvalanche />
+                    <span className='font-semibold'>AVAX</span>
+                    to the address
+                </div>
+                <div className='font-semibold'>
+                    0x6D824716d4A7a20Bdf95b3286530240bAE3Bf7C0
+                </div>
+                <div className='flex gap-4 items-center'>
+                    <div className='flex gap-2'>
+                        <IconAvalanche />
+                        AVAX
+                    </div>
+                    <IconRight />
+                    <div className='flex gap-2'>
+                        <IconEthereum />
+                        ETH
+                    </div>
                 </div>
             </div>
-            <div className='text-center'>
+            <div className='flex flex-col gap-3 items-center'>
                 <div>Estimated Received</div>
-                <div>xxxxxxx ETH</div>
+                <div className='font-semibold'>XXXXXX ETH</div>
             </div>
             <button
-                className='bg-black text-white rounded-full px-[32px] py-[8px] font-semibold w-fit mx-auto'
+                className='bg-black text-white rounded-full px-[32px] py-[8px] font-semibold w-fit mx-auto hover:bg-[#E84142]'
                 onClick={() => onDoneButton()}
             >
                 Done
