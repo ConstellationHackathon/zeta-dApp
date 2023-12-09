@@ -6,6 +6,8 @@ import { AvaxFetchAddress } from "@/graphql/FetchAddressAvax";
 import { useQuery } from "@apollo/client";
 import { ethers } from "ethers";
 import { SepoliaReceiveMsgResponseModal } from "@/graphql/FetchAddressSepoliaReponseModal";
+import { AvaxSenderEvents } from "@/graphql/FetchSenderInfo";
+import { SepoliaReceiveMsg } from "@/graphql/FetchAddressSepolia";
 interface ResponseModalProps {
   closeModal: () => void;
   senderInfo: string;
@@ -16,6 +18,7 @@ interface AvaxReceived {
   tokenAmount: string;
   __typename: string;
   transactionHash: string;
+  id : string;
 }
 interface UsdAvaxSent {
   amountSent: string;
@@ -23,108 +26,111 @@ interface UsdAvaxSent {
   timestamp: string;
   __typename: string;
   transactionHash: string;
+  id : string;
 }
 interface MsgReceived {
   timestamp: string;
   userAddress: string;
   amountToTransferUSD: string;
   transactionHash: string;
+  id: string;
 }
 interface FundsTransferred {
   timestamp: string;
   recipient: string;
   transactionHash: string;
   amount: string;
+  id: string;
 }
 const FollowInfoModal: React.FC<ResponseModalProps> = ({
   closeModal,
   senderInfo,
 }) => {
-  const {
-    data: dataAvax,
-    refetch,
-    loading,
-  } = useQuery(AvaxFetchAddress, {
-    variables: { sender: senderInfo },
-  });
-  const {
-    data: dataSepolia,
-    refetch: refetchSepolia,
-    loading: loadingSepolia,
-  } = useQuery(SepoliaReceiveMsgResponseModal, {
-    variables: { sender: senderInfo },
-  });
+  const { loading, error, data: dataAvax, refetch: refetchAvaxSenderEvents } = useQuery(AvaxSenderEvents);
+  const { data: dataSepolia, refetch: refetchSepoliaReceiveMsg } = useQuery(SepoliaReceiveMsg);
+  
   const [recentAvaxReceived, setRecentAvaxReceived] = useState<AvaxReceived>();
   const [recentUsdAvaxSent, setRecentUsdAvaxSent] = useState<UsdAvaxSent>();
   const [recentMsgReceived, setRecentMsgReceived] = useState<MsgReceived>();
   const [recentFundsTransferred, setRecentFundsTransferred] =
     useState<FundsTransferred>();
-  useEffect(() => {
-    if (!dataAvax) {
-      refetch();
-    }
-    console.log("data filtered avax is ", dataAvax);
-    if (dataAvax) {
-      processDataAvax();
-    }
-    const interval = setInterval(() => {
-      if (!dataAvax) {
-        refetch();
-      }
-      console.log("data filtered is ", dataAvax);
-      if (dataAvax) {
-        processDataAvax();
-      }
-    }, 10000);
+    useEffect(() => {
+      console.log(dataAvax);
+      console.log(dataSepolia);
+      
+      
+     const interval = setInterval(() => {
+          refetchAvaxSenderEvents();  // Refetch AvaxSenderEvents data
+          refetchSepoliaReceiveMsg(); // Refetch SepoliaReceiveMsg data
+          calculate();
+      }, 2000); // Refetch every second
 
-    return () => clearInterval(interval);
-  }, [dataAvax, refetch, senderInfo]);
-  useEffect(() => {
-    if (!dataSepolia) {
-      refetchSepolia();
+      return () => clearInterval(interval); 
+    }, [refetchAvaxSenderEvents, refetchSepoliaReceiveMsg]);
+
+  // useEffect(() => {
+    // console.log(dataAvax);
+    // console.log(dataSepolia);
+    // processDataAvax();
+    // processDataSepolia();
+    // const interval = setInterval(() => {
+    //   console.log(dataAvax);
+    // console.log(dataSepolia);
+    //   console.log("fetch events on follow modal");
+    //   refetch();
+    //   refetchSepolia();
+    //   processDataAvax();
+    //   processDataSepolia();
+    // }, 5000);
+    // return () => clearInterval(interval); 
+  // }, [refetch, refetchSepolia]);
+    const calculate = () => {
+      console.log("calculate");
+      if (!dataAvax || !dataSepolia) return;
+      console.log("calculate 2 step");
+      const avaxReceived: AvaxReceived[] = dataAvax?.avaxReceiveds;
+      const usdAvaxSent: UsdAvaxSent[] = dataAvax?.amountSentInUSDs;
+      const msgReceived: MsgReceived[] = dataSepolia?.msgReceiveds;
+      const fundsTransferred: FundsTransferred[] = dataSepolia?.fundsTransferreds;
+      console.log('avaxreceived is', avaxReceived);
+      console.log(senderInfo);
+      
+      const senderAvaxTXs = avaxReceived.filter(element => element.sender.toLowerCase() === senderInfo.toLowerCase());
+      const senderUsdTXs = usdAvaxSent.filter(element => element.sender.toLowerCase() === senderInfo.toLowerCase());
+      const senderMsgTXs = msgReceived.filter(element => element.userAddress.toLowerCase() === senderInfo.toLowerCase());
+      const senderFundsTXs = fundsTransferred.filter(element => element.recipient.toLowerCase() === senderInfo.toLowerCase());
+      console.log("senderAvaxTXs", senderAvaxTXs);
+      console.log("senderUsdTXs", senderUsdTXs);
+      console.log("senderMsgTXs", senderMsgTXs);
+      console.log("senderFundsTXs", senderFundsTXs);
+      processDataAvax(senderAvaxTXs, senderUsdTXs);
+      processDataSepolia(senderMsgTXs, senderFundsTXs);
     }
-    console.log("data filtered sepolia is ", dataSepolia);
-    if (dataSepolia) {
-      processDataSepolia();
-    }
-    const interval = setInterval(() => {
-      if (!dataSepolia) {
-        refetchSepolia();
-      }
-      console.log("data filtered sepolia is ", dataSepolia);
-      if (dataSepolia) {
-        processDataSepolia();
-      }
-    }, 10000);
-    return () => clearInterval(interval);
-  }, [dataAvax, refetch, senderInfo]);
-  const processDataAvax = () => {
-    const avaxReceived: AvaxReceived[] = dataAvax?.avaxReceiveds;
-    const usdAvaxSent: UsdAvaxSent[] = dataAvax?.amountSentInUSDs;
+  const processDataAvax = (senderAvaxTXs: AvaxReceived[], senderUsdTXs: UsdAvaxSent[]) => {
+    const avaxReceived: AvaxReceived[] = senderAvaxTXs;
+    const usdAvaxSent: UsdAvaxSent[] = senderUsdTXs;
     const mostRecentAvaxReceived: AvaxReceived = mostRecentItem(
       avaxReceived
     ) as AvaxReceived;
     const mostRecentUsdAvaxSent: UsdAvaxSent = mostRecentItem(
       usdAvaxSent
     ) as UsdAvaxSent;
+    console.log("funds sent to avax", mostRecentUsdAvaxSent);
     console.log("most recent avax received is ", mostRecentAvaxReceived);
     console.log("most recent usd avax sent is ", mostRecentUsdAvaxSent);
     setRecentAvaxReceived(mostRecentAvaxReceived);
     setRecentUsdAvaxSent(mostRecentUsdAvaxSent);
   };
-  const processDataSepolia = () => {
-    console.log('fundsTransferred is',dataSepolia?.fundsTransferreds);
-    
-    const msgReceived: MsgReceived[] = dataSepolia?.msgReceiveds;
-    const fundsTransferred: FundsTransferred[] = dataSepolia?.fundsTransferreds;
+  const processDataSepolia = (senderMsgTXs :MsgReceived[], senderFundsTXs:FundsTransferred[] ) => {
+    const msgReceived: MsgReceived[] = senderMsgTXs;
+    const fundsTransferred: FundsTransferred[] = senderFundsTXs;
     const mostRecentMsgReceived: MsgReceived = mostRecentItemSepolia(
       msgReceived
     ) as MsgReceived;
-    console.log('fundsTransferred', fundsTransferred);
-    
     const mostRecentFundsTransferred: FundsTransferred = mostRecentItemSepolia(
       fundsTransferred
-    ) as FundsTransferred;
+      ) as FundsTransferred;
+    console.log("fundsTransferred", fundsTransferred);
     console.log("most recent msg received is ", mostRecentMsgReceived);
     console.log(
       "most recent funds transferred is ",
@@ -134,7 +140,7 @@ const FollowInfoModal: React.FC<ResponseModalProps> = ({
     setRecentFundsTransferred(mostRecentFundsTransferred);
   };
   const mostRecentItem = (elements: AvaxReceived[] | UsdAvaxSent[]) => {
-    if(!elements || elements === undefined) return null;
+    if (!elements || elements === undefined || elements.length <=0) return null;
     const elementWithMaxTimestamp: AvaxReceived | UsdAvaxSent = elements.reduce(
       (max, item) => {
         return parseInt(item.timestamp) > parseInt(max.timestamp) ? item : max;
@@ -145,9 +151,9 @@ const FollowInfoModal: React.FC<ResponseModalProps> = ({
   const mostRecentItemSepolia = (
     elements: MsgReceived[] | FundsTransferred[]
   ) => {
-    if(!elements || elements === undefined) return null;
+    if (!elements || elements === undefined || elements.length <=0) return null;
     const elementWithMaxTimestamp: MsgReceived | FundsTransferred =
-      elements.reduce((max, item) => {
+      elements?.reduce((max, item) => {
         return parseInt(item.timestamp) > parseInt(max.timestamp) ? item : max;
       });
     return elementWithMaxTimestamp;
