@@ -1,58 +1,65 @@
+import { truncate } from 'truncate-ethereum-address';
 import { AvaxSenderEvents  } from '@/graphql/FetchSenderInfo'
 import { SepoliaReceiveMsg } from '@/graphql/FetchAddressSepolia'
+import { getFujiEthPrice} from '@/services/apiService';
 import { useQuery } from '@apollo/client';
 import { ethers } from "ethers";
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 const MovementsTable = () => {
+    type ApiResponse = {
+    };
     const transactions = []
     const { loading, error, data } = useQuery(AvaxSenderEvents);
-    useEffect(() => {
-      console.log(data);
-      console.log('error is ', error);
-      
-    }, [data, error])
+    const querySepoliaReceiver = useQuery(SepoliaReceiveMsg);
+    const [fujiEthPrice, setResult] = useState<ApiResponse | null>(null);
+
+      useEffect(() => {
+        const getFujiEthPrice = async () => {
+          const data = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=avalanche-2&vs_currencies=eth", {
+            method: "GET"
+          });
+          const jsonData = await data.json();
+          setResult(jsonData["avalanche-2"].eth);
+        };
+
+        getFujiEthPrice();
+      }, []);
     
     if (loading) return 'Loading...';
-    console.log(data)
     data?.avaxReceiveds.map((item, index)=>{
        const _item = {}
-        _item.transactionId = item.transactionId
-        _item.address = item.sender
-        _item.from = "Fuji"
+       const event_receiver =querySepoliaReceiver.data?.msgReceiveds.find(event=>event.transactionId==item.transactionId) || {};
+       _item.transactionId = truncate(item.transactionId, { nPrefix: 1 })
+        _item.address = truncate(item.sender, { nPrefix: 1 })
         _item.avax = ethers.formatEther(item.tokenAmount);
-        _item.to = "Sepolia"
-        _item.eth = ""
-        _item.totalReceived = ""
-        _item.status = "pending"
+        _item.eth = fujiEthPrice
+        _item.totalReceived = ethers.formatEther(item.tokenAmount) * fujiEthPrice 
+        _item.status = event_receiver ? "Completed" :  "Processing ...";
         _item.transactionDate = new Date(item.timestamp * 1000).toString()
         transactions.push(_item)
     })
   return (
-    <div className="movement-table flex flex-col justify-center items-center bg-[#fafafa] shadow-sm p-[16px] rounded-[16px] gap-2 w-full">
-  <section  className="grid grid-cols-9 w-[1024px] bg-[#fafafa] shadow-md p-[16px] rounded-[8px]">
-      <div className="flex flex-col gap-1 items-center justify-center">Transaction Id</div>
-      <div className="flex flex-col gap-1 items-center justify-center">Address</div>
-      <div className="flex flex-col gap-1 items-center justify-center">From</div>
-      <div className="flex flex-col gap-1 items-center justify-center">Avax</div>
-      <div className="flex flex-col gap-1 items-center justify-center">To</div>
-      <div className="flex flex-col gap-1 items-center justify-center">Eth</div>
-      <div className="flex flex-col gap-1 items-center justify-center">Total recived</div>
-      <div className="flex flex-col gap-1 items-center justify-center">Status</div>
-      <div className="flex flex-col gap-1 items-center justify-center">Date</div>
+    <div className="movement-table flex flex-col justify-center items-center bg-[#fafafa] shadow-sm p-[16px] gap-2 w-full">
+  <section  className="grid grid-cols-12 w-[1400px] bg-[#fafafa] shadow-md p-[16px] rounded-[8px]">
+      <div className="flex flex-col gap-1 items-center justify-center text-center">Transaction Id</div>
+      <div className="flex flex-col gap-1 items-center justify-center text-center">Address</div>
+      <div className="flex flex-col gap-2 col-span-2 items-center justify-center text-center">Total Avax</div>
+      <div className="flex flex-col gap-2 col-span-2 items-center justify-center text-center">Avax/Eth</div>
+      <div className="flex flex-col gap-2 col-span-2 items-center justify-center text-center">Total recived</div>
+      <div className="flex flex-col gap-1 col-span-2 items-center justify-center text-center">Status</div>
+      <div className="flex flex-col gap-2 col-span-2 items-center justify-center text-center">Date</div>
     
   </section>
   <section>
        {transactions.map((item, index) => (
-       <div key={index}  className="detail-transaction grid grid-cols-9 w-[1024px] bg-[#fafafa] shadow-md p-[16px] rounded-[8px]">
-        <div className="flex flex-col gap-1 items-center justify-center truncate overflow-hidden ...">{item.transactionId}</div>
+       <div key={index}  className="detail-transaction grid grid-cols-12 w-[1400px] bg-[#fafafa] shadow-md p-[16px]">
+           <div className="flex flex-col gap-1 items-center justify-center truncate overflow-hidden ..." title={item.transactionId}>{item.transactionId}</div>
         <div className="flex flex-col gap-1 items-center justify-center truncate overflow-hidden ..." title={item.address}>{item.address}</div>
-        <div className="flex flex-col gap-1 items-center justify-center">{item.from}</div>
-        <div className="flex flex-col gap-1 items-center justify-center">{item.avax}</div>
-        <div className="flex flex-col gap-1 items-center justify-center">{item.to}</div>
-        <div className="flex flex-col gap-1 items-center justify-center">{item.eth}</div>
-        <div className="flex flex-col gap-1 items-center justify-center">{item.totalReceived}</div>
-        <div className="flex flex-col gap-1 items-center justify-center">{item.status}</div>
-        <div className="flex flex-col gap-1 items-center justify-center">{item.transactionDate}</div>
+        <div className="flex flex-col gap-2 col-span-2 items-center justify-center" title={item.avax}>{item.avax}</div>
+        <div className="flex flex-col gap-2 col-span-2 items-center justify-center" title={item.eth}>{item.eth}</div>
+        <div className="flex flex-col gap-2 col-span-2 items-center justify-center" title={item.totalReceived}>{item.totalReceived}</div>
+        <div className="flex flex-col gap-1 col-span-2 items-center justify-center" title={item.status}>{item.status}</div>
+        <div className="flex flex-col gap-2 col-span-2 items-center justify-center">{item.transactionDate}</div>
       </div>
       ))}
   </section>
