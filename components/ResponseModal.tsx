@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
-import { IconClose } from "./Icon";
+import { IconAvalanche, IconClose, IconEthereum, IconRight } from "./Icon";
 import Modal from "react-modal";
 import { ethers } from "ethers";
 import FollowInfoModal from "./FollowInfoModal";
 
 interface ResponseModalProps {
   closeModal: () => void;
+  estimatedReceived: number;
+  fee: number;
+  fromValue: number | null;
 }
 
 Modal.setAppElement("#__next");
 
-const ResponseModal: React.FC<ResponseModalProps> = ({ closeModal }) => {
+const ResponseModal: React.FC<ResponseModalProps> = ({
+  closeModal,
+  estimatedReceived,
+  fee,
+  fromValue,
+}) => {
   const [scanOn, setScanOn] = useState(false);
   const [senderInfo, setSenderInfo] = useState<string>("");
   const [isAddressValid, setIsAddressValid] = useState(true);
@@ -32,7 +40,10 @@ const ResponseModal: React.FC<ResponseModalProps> = ({ closeModal }) => {
 
   if (scanOn) {
     return (
-      <FollowInfoModal closeModal={() => setScanOn(false)} senderInfo={senderInfo}/>
+      <FollowInfoModal
+        closeModal={() => setScanOn(false)}
+        senderInfo={senderInfo}
+      />
     );
   }
 
@@ -45,34 +56,61 @@ const ResponseModal: React.FC<ResponseModalProps> = ({ closeModal }) => {
       overlayClassName="fixed inset-0 bg-black bg-opacity-20"
     >
       <div className="flex flex-col items-center justify-center gap-4 w-full">
-        <div>You are exchanging 0.055 BTC</div>
-        <div>{"Bitcoin > Ethereum"}</div>
-        <div>
-          {"If you want to follow your transaction, put your address below:"}
+        <div className="flex gap-2">
+          You are exchanging
+          <span className="font-semibold">{fromValue}</span>
+          <IconAvalanche />
+          <span className="font-semibold">AVAX</span>
         </div>
-        <input
-          type="text"
-          placeholder="Your Address (e.g. 0x123...)"
-          className="w-full p-3 opacity-80 bg-neutral-100 rounded-2xl text-2xl font-normal font-['Montserrat']"
-          value={senderInfo}
-          onChange={handleInputChange}
-        />
+        <div className="flex gap-4 items-center">
+          <div className="flex gap-2">
+            <IconAvalanche />
+            AVAX
+          </div>
+          <IconRight />
+          <div className="flex gap-2">
+            <IconEthereum />
+            ETH
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col w-full gap-4">
+        <div className="flex justify-center items-center text-center w-full">
+          If you want to follow your last transaction, please put your address
+          below
+        </div>
+        <div className="flex flex-col w-full px-4 pt-3 pb-6 gap-2 rounded-[12px] bg-[#E84142]">
+          <p className="text-white">Address</p>
+          <input
+            type="text"
+            placeholder="Your Address (e.g. 0x123...)"
+            className="w-full p-3 opacity-80 bg-neutral-100 rounded-[8px] text-2xl font-normal font-['Montserrat']"
+            value={senderInfo}
+            onChange={handleInputChange}
+          />
+        </div>
         {!isAddressValid && (
           <div className="px-6 py-2 bg-red-100 border border-red-400 text-red-700 rounded-md">
             Invalid Ethereum address. Please enter a valid address.
           </div>
         )}
+      </div>
+      <div className="flex flex-col items-center gap-4">
         <button
-          className="bg-black text-white rounded-full px-[32px] py-[8px] font-semibold w-fit"
+          className="bg-black text-white rounded-full px-[32px] py-[8px] font-semibold w-fit hover:bg-[#E84142]"
           onClick={onFollowTransaction}
         >
           Follow Transaction
         </button>
-        <div>
+        <div className="font-semibold hover:text-[#E84142]">
           {"Or just continue"}
         </div>
       </div>
-      <button className="absolute right-[16px] top-[16px]" onClick={closeModal}>
+      <button
+        className="absolute right-[16px] top-[16px]"
+        onClick={closeModal}
+        title="Close Modal+"
+      >
         <IconClose />
       </button>
     </Modal>
