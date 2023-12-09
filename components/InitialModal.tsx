@@ -32,7 +32,7 @@ const InitialModal: React.FC<ResponseModalProps> = ({
           <span className="font-semibold">AVAX</span>
           to the address
         </div>
-        <div className="font-semibold">
+        <div className="w-full break-words font-semibold text-center">
           0xe520Cad33d788e38FE7d7Dced1b7e11bb0457B9C
         </div>
         <div className="flex gap-4 items-center">
