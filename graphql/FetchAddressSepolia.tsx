@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const SepoliaReceiveMsg = gql`
-  query SepoliaReceiveMsg($transactionId: String!) {
-    msgReceiveds(where: { transactionId: $transactionId }) {
+  query SepoliaReceiveMsg{
+    msgReceiveds{
       timestamp
       userAddress
       amountToTransferUSD

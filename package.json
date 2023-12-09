@@ -16,7 +16,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-loader-spinner": "^6.0.0",
-    "react-modal": "^3.16.1"
+    "react-modal": "^3.16.1",
+    "truncate-ethereum-address": "^0.3.0"
   },
   "devDependencies": {
     "@types/node": "^20",
