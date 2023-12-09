@@ -12,5 +12,12 @@ export const SepoliaReceiveMsg = gql`
         amount
         blockNumber
       }
+      msgReceiveds {
+        timestamp
+        userAddress
+        amountToTransferUSD
+        transactionHash
+        id
+      }
   }
 `;
