@@ -50,7 +50,7 @@ const MovementsTable = () => {
     })
   return (
     <div className="movement-table flex flex-col justify-center items-center bg-[#fafafa] shadow-sm p-16 gap-2 w-full text-black">
-      <section className="grid grid-cols-12 w-[1400px] bg-[#E84142] shadow-md p-[16px] rounded-tl-[24px] rounded-tr-[24px] text-white font-bold">
+      <section className="grid table-header grid-cols-12 w-[1400px] bg-[#E84142] shadow-md p-[16px] rounded-t-[24px] rounded-b-[4px] text-white font-bold">
         <div className="flex flex-col gap-1 items-center justify-center text-center">
           Transaction Id
         </div>
@@ -77,7 +77,8 @@ const MovementsTable = () => {
           {transactions.sort((a, b) => b.date - a.date).map((item, index) => (
           <div
             key={index}
-            className="detail-transaction grid grid-cols-12 w-[1400px] bg-[#fafafa] shadow-md p-[16px] text-black "
+            className="detail-transaction grid grid-cols-12 w-[1400px] bg-[#fafafa] shadow-md p-[16px] text-black rounded-b-[4px]
+            even:bg-[#f4f4f4]"
           >
             <div
               className="flex flex-col gap-1 items-center justify-center truncate overflow-hidden  ..."
