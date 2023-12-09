@@ -8,10 +8,10 @@ import {
 import { setContext } from "@apollo/client/link/context";
 
 const httpLinkAvax = createHttpLink({
-  uri: "https://api.studio.thegraph.com/query/60251/zetav2/v0.0.1", // reemplaza por tu endpoint de GraphQL
+  uri: "https://api.studio.thegraph.com/query/60251/zetav2/v0.0.2", // reemplaza por tu endpoint de GraphQL
 });
 const httpLinkSepolia = createHttpLink({
-  uri: "https://api.studio.thegraph.com/query/60251/zeta-sepolia/v0.0.1", // reemplaza por tu endpoint de GraphQL
+  uri: "https://api.studio.thegraph.com/query/60251/zeta-sepolia/v0.0.2", // reemplaza por tu endpoint de GraphQL
 });
 
 const linkRouter = (operation: any) => {
