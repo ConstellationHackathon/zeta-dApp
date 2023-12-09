@@ -5,6 +5,7 @@ import { getFujiEthPrice} from '@/services/apiService';
 import { useQuery } from '@apollo/client';
 import { ethers } from "ethers";
 import React, { useEffect, useState } from 'react'
+import { IconAvalanche, IconEthereum } from './Icon';
 
 const MovementsTable = () => {
     const [time, setTime] = useState(new Date());
@@ -58,14 +59,14 @@ const MovementsTable = () => {
         <div className="flex flex-col gap-1 items-center justify-center text-center">
           Address
         </div>
-        <div className="flex flex-col gap-2 col-span-2 items-center justify-center text-center">
-          Total Avax
+        <div className="flex gap-2 col-span-2 items-center justify-center text-center">
+          Total AVAX <IconAvalanche width={24} height={24} />
         </div>
-        <div className="flex flex-col gap-2 col-span-2 items-center justify-center text-center">
-          Avax/Eth
+        <div className="flex gap-2 col-span-2 items-center justify-center text-center">
+          AVAX <IconAvalanche width={24} height={24} /> / ETH <IconEthereum width={24} height={24} />
         </div>
-        <div className="flex flex-col gap-2 col-span-2 items-center justify-center text-center">
-          Total recived
+        <div className="flex gap-2 col-span-2 items-center justify-center text-center">
+          Total recived <IconEthereum width={24} height={24} />
         </div>
         <div className="flex flex-col gap-1 col-span-2 items-center justify-center text-center">
           Status
@@ -94,22 +95,25 @@ const MovementsTable = () => {
               {item.address}
             </div>
             <div
-              className="flex flex-col gap-2 col-span-2 items-center justify-center"
+              className="flex gap-2 col-span-2 items-center justify-center"
               title={item.avax}
             >
               {item.avax}
+              <IconAvalanche width={20} height={20} />
             </div>
             <div
-              className="flex flex-col gap-2 col-span-2 items-center justify-center"
+              className="flex gap-2 col-span-2 items-center justify-center"
               title={item.eth}
             >
               {item.eth}
+              <IconEthereum width={20} height={20} />
             </div>
             <div
-              className="flex flex-col gap-2 col-span-2 items-center justify-center font-semibold"
+              className="flex gap-2 col-span-2 items-center justify-center font-semibold"
               title={item.totalReceived}
             >
               {item.totalReceived}
+              <IconEthereum width={20} height={20} />
             </div>
             <div
               className="flex flex-col gap-1 col-span-2 items-center justify-center text-green-600 font-semibold"
