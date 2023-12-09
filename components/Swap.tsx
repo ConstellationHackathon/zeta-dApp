@@ -98,7 +98,7 @@ const Swap = () => {
             <div>Ethereum</div>
           </div>
           <div className="flex w-full justify-between items-center">
-            <div className="font-bold text-xl">{estimatedReceived - fee}</div>
+            <div className="font-bold text-xl">{estimatedReceived ? (estimatedReceived - fee) : 0}</div>
             <div className="bg-[#E84142] px-4 py-2 border-2 border-white rounded-[12px] hover:bg-white hover:text-black">
               <label htmlFor="coinSelectTo" />
               <select
@@ -152,11 +152,11 @@ const Swap = () => {
         <div className="flex flex-col gap-2 mt-8">
           <div className="flex justify-between">
             <div>Fees</div>
-            <div>{`${fee} ETH`}</div>
+            <div>{`${fee ? fee : 0} ETH`}</div>
           </div>
           <div className="flex justify-between text-lg font-semibold">
             <div>Estimated Received</div>
-            <div>{`${estimatedReceived} ETH`}</div>
+            <div>{`${estimatedReceived ? estimatedReceived : 0} ETH`}</div>
           </div>
         </div>
       </div>
