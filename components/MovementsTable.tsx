@@ -28,7 +28,6 @@ const MovementsTable = () => {
 
         getFujiEthPrice();
        const interval = setInterval(() => {
-       console.log("fetch events")
             refetchAvaxSenderEvents();  // Refetch AvaxSenderEvents data
             refetchSepoliaReceiveMsg(); // Refetch SepoliaReceiveMsg data
         }, 2000); // Refetch every second
