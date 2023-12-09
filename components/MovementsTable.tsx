@@ -23,8 +23,9 @@ const MovementsTable = () => {
           const jsonData = await data.json();
           setResult(jsonData["avalanche-2"].eth);
         };
-
-        getFujiEthPrice();
+        if (!fujiEthPrice){
+            getFujiEthPrice();
+        }
       useEffect(() => {
        const interval = setInterval(() => {
             refetchAvaxSenderEvents();  // Refetch AvaxSenderEvents data
