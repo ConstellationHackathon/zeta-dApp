@@ -7,6 +7,8 @@ const Swap = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [responseModal, setResponseModal] = useState(false);
   const [selectedCoin, setSelectedCoin] = useState<string>("AVAX1");
+  const [fromValue, setFromValue] = useState<number | null>(null);
+  const [toValue, setToValue] = useState<number>(0);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -19,6 +21,7 @@ const Swap = () => {
   const handleCoinChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelectedCoin(event.target.value);
   };
+
   const onDoneButton = () => {
     console.log("done button");
     
@@ -36,7 +39,13 @@ const Swap = () => {
             <div>AVAX</div>
           </div>
           <div className="flex w-full justify-between items-center">
-            <div>0.055</div>
+            <input 
+              type="number" 
+              value={fromValue!}
+              onChange={(e) => setFromValue(parseFloat(e.target.value))} 
+              className="bg-[#E84142] text-white border-none"
+              placeholder="Amount to send . . ."
+            />
             <div className="bg-[#E84142] px-4 py-2 border-2 border-white rounded-[12px] ">
               <label htmlFor="coinSelectFrom" />
               <select
@@ -48,9 +57,6 @@ const Swap = () => {
               >
                 <option value="AVAX" className="text-black">
                   AVAX
-                </option>
-                <option value="BTC" className="text-black">
-                  BTC
                 </option>
                 <option value="ETH" className="text-black">
                   ETH
@@ -65,7 +71,12 @@ const Swap = () => {
             <div>Ethereum</div>
           </div>
           <div className="flex w-full justify-between items-center">
-            <div>1.0124093</div>
+            <input 
+              type="text" 
+              value={toValue} 
+              onChange={(e) => setToValue(e.target.value)} 
+              className="bg-[#E84142] text-white border-none"
+            />
             <div className="bg-[#E84142] px-4 py-2 border-2 border-white rounded-[12px] ">
               <label htmlFor="coinSelectTo" />
               <select
@@ -77,9 +88,6 @@ const Swap = () => {
               >
                 <option value="ETH" className="text-black">
                   ETH
-                </option>
-                <option value="BTC" className="text-black">
-                  BTC
                 </option>
                 <option value="AVAX" className="text-black">
                   AVAX
