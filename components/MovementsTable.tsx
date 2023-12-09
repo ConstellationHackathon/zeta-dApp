@@ -1,7 +1,6 @@
 import { truncate } from 'truncate-ethereum-address';
 import { AvaxSenderEvents  } from '@/graphql/FetchSenderInfo'
 import { SepoliaReceiveMsg } from '@/graphql/FetchAddressSepolia'
-import { getFujiEthPrice} from '@/services/apiService';
 import { useQuery } from '@apollo/client';
 import { ethers } from "ethers";
 import React, { useEffect, useState } from 'react'
