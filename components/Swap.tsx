@@ -49,9 +49,9 @@ const Swap = () => {
   const onChangeFromValue = (event: ChangeEvent<HTMLInputElement>) => {
     setFromValue(parseFloat(event.target.value));
     const fee = (parseFloat(event.target.value) * fujiEthPrice) / 100;
-    setEstimatedReceived((parseFloat(event.target.value) * fujiEthPrice) - fee);
+    setEstimatedReceived(parseFloat(event.target.value) * fujiEthPrice - fee);
     setFee(fee);
-  }
+  };
   return (
     <div className="flex flex-col justify-center items-center w-full h-screen bg-[#f4f4f4] text-black gap-8">
       <Image src="/assets/logo.png" width={100} height={100} alt="zeta Logo" />
@@ -78,7 +78,11 @@ const Swap = () => {
                 aria-label="Select Coin"
                 className="bg-transparent"
               >
-                <option data-img_src="/assets/logo.png" value="AVAX" className="text-black">
+                <option
+                  data-img_src="/assets/logo.png"
+                  value="AVAX"
+                  className="text-black"
+                >
                   AVAX
                 </option>
                 <option value="ETH" className="text-black">
@@ -94,7 +98,7 @@ const Swap = () => {
             <div>Ethereum</div>
           </div>
           <div className="flex w-full justify-between items-center">
-            <div className="font-bold text-xl">{estimatedReceived-fee}</div>
+            <div className="font-bold text-xl">{estimatedReceived - fee}</div>
             <div className="bg-[#E84142] px-4 py-2 border-2 border-white rounded-[12px] hover:bg-white hover:text-black">
               <label htmlFor="coinSelectTo" />
               <select
@@ -125,10 +129,17 @@ const Swap = () => {
           <InitialModal
             closeModal={() => setIsModalOpen(false)}
             onDoneButton={onDoneButton}
+            estimatedReceived={estimatedReceived}
+            fee={fee}
+            fromValue={fromValue}
           />
         )}
         {responseModal && (
-          <ResponseModal closeModal={() => setResponseModal(false)} />
+          <ResponseModal
+            closeModal={() => setResponseModal(false)}
+            estimatedReceived={estimatedReceived}
+            fee={fee}
+          />
         )}
         <div className="flex text-lg text-center font-semibold hover:text-[#E84142] items-center justify-center">
             <p>

@@ -6,11 +6,13 @@ import FollowInfoModal from "./FollowInfoModal";
 
 interface ResponseModalProps {
   closeModal: () => void;
+  estimatedReceived: number;
+  fee: number;
 }
 
 Modal.setAppElement("#__next");
 
-const ResponseModal: React.FC<ResponseModalProps> = ({ closeModal }) => {
+const ResponseModal: React.FC<ResponseModalProps> = ({ closeModal, estimatedReceived, fee }) => {
   const [scanOn, setScanOn] = useState(false);
   const [senderInfo, setSenderInfo] = useState<string>("");
   const [isAddressValid, setIsAddressValid] = useState(true);
