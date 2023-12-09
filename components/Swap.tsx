@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, useEffect } from "react";
 import InitialModal from "./InitialModal";
 import Image from "next/image";
 import ResponseModal from "./ResponseModal";
-import { IconClose } from "./Icon";
+import { IconClose, IconRight_2 } from "./Icon";
 
 const Swap = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,20 +56,20 @@ const Swap = () => {
     <div className="flex flex-col justify-center items-center w-full h-screen bg-[#f4f4f4] text-black gap-8">
       <Image src="/assets/logo.png" width={100} height={100} alt="zeta Logo" />
       <div className="flex flex-col w-[640px] bg-[#fafafa] shadow-md p-[32px] rounded-[24px] gap-2">
-        <div className="flex flex-col w-full bg-[#E84142] text-white p-[24px] rounded-tl-[16px] rounded-tr-[16px]">
-          <div className="flex w-full justify-between">
+        <div className="flex flex-col gap-3 w-full bg-[#E84142] text-white p-[24px] rounded-tl-[16px] rounded-tr-[16px]">
+          <div className="flex w-full justify-between font-semibold">
             <div>From</div>
-            <div>AVAX</div>
+            <div>Avalanche</div>
           </div>
           <div className="flex w-full justify-between items-center">
             <input
               type="number"
               value={fromValue!}
               onChange={onChangeFromValue}
-              className="bg-[#E84142] text-white border-none"
+              className="bg-[#E84142] text-white border-none font-bold text-xl"
               placeholder="Amount to send . . ."
             />
-            <div className="bg-[#E84142] px-4 py-2 border-2 border-white rounded-[12px] ">
+            <div className="bg-[#E84142] px-4 py-2 border-2 border-white rounded-[12px] hover:bg-white hover:text-black ">
               <label htmlFor="coinSelectFrom" />
               <select
                 id="coinSelectFrom"
@@ -88,21 +88,21 @@ const Swap = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col w-full bg-[#E84142] text-white p-[24px] rounded-bl-[16px] rounded-br-[16px] gap-1">
-          <div className="flex w-full justify-between">
+        <div className="flex flex-col gap-3 w-full bg-[#E84142] text-white p-[24px] rounded-bl-[16px] rounded-br-[16px]">
+          <div className="flex w-full justify-between font-semibold">
             <div>To (estimated)</div>
             <div>Ethereum</div>
           </div>
           <div className="flex w-full justify-between items-center">
-            <div>{estimatedReceived-fee}</div>
-            <div className="bg-[#E84142] px-4 py-2 border-2 border-white rounded-[12px] ">
+            <div className="font-bold text-xl">{estimatedReceived-fee}</div>
+            <div className="bg-[#E84142] px-4 py-2 border-2 border-white rounded-[12px] hover:bg-white hover:text-black">
               <label htmlFor="coinSelectTo" />
               <select
                 id="coinSelectTo"
                 value={selectedCoin}
                 onChange={handleCoinChange}
                 aria-label="Select Coin"
-                className="bg-transparent"
+                className="bg-transparent "
               >
                 <option value="ETH" className="text-black">
                   ETH
@@ -116,7 +116,7 @@ const Swap = () => {
         </div>
 
         <button
-          className="bg-black text-white rounded-full p-2 font-semibold"
+          className="bg-black text-white rounded-full py-[8px] font-semibold hover:bg-[#E84142] text-lg"
           onClick={openModal}
         >
           Exchange now
@@ -130,14 +130,19 @@ const Swap = () => {
         {responseModal && (
           <ResponseModal closeModal={() => setResponseModal(false)} />
         )}
-        <div className="text-center">Send to another address</div>
+        <div className="flex text-lg text-center font-semibold hover:text-[#E84142] items-center justify-center">
+            <p>
+                Send to another address
+            </p>
+            <IconRight_2 />
+        </div>
 
-        <div className="mt-8">
+        <div className="flex flex-col gap-2 mt-8">
           <div className="flex justify-between">
             <div>Fees</div>
             <div>{`${fee} ETH`}</div>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between text-lg font-semibold">
             <div>Estimated Received</div>
             <div>{`${estimatedReceived} ETH`}</div>
           </div>
