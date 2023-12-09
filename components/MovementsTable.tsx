@@ -5,12 +5,15 @@ import { getFujiEthPrice} from '@/services/apiService';
 import { useQuery } from '@apollo/client';
 import { ethers } from "ethers";
 import React, { useEffect, useState } from 'react'
+
 const MovementsTable = () => {
+    const [time, setTime] = useState(new Date());
     type ApiResponse = {
     };
     const transactions = []
-    const { loading, error, data } = useQuery(AvaxSenderEvents);
-    const querySepoliaReceiver = useQuery(SepoliaReceiveMsg);
+
+    const { loading, error, data, refetch: refetchAvaxSenderEvents } = useQuery(AvaxSenderEvents);
+    const { data: querySepoliaReceiver, refetch: refetchSepoliaReceiveMsg } = useQuery(SepoliaReceiveMsg);
     const [fujiEthPrice, setResult] = useState<ApiResponse | null>(null);
 
       useEffect(() => {
@@ -23,12 +26,18 @@ const MovementsTable = () => {
         };
 
         getFujiEthPrice();
-      }, []);
+       const interval = setInterval(() => {
+            refetchAvaxSenderEvents();  // Refetch AvaxSenderEvents data
+            refetchSepoliaReceiveMsg(); // Refetch SepoliaReceiveMsg data
+        }, 2000); // Refetch every second
+
+        return () => clearInterval(interval); 
+      }, [refetchAvaxSenderEvents, refetchSepoliaReceiveMsg]);
     
     if (loading) return 'Loading...';
     data?.avaxReceiveds.map((item, index)=>{
        const _item = {}
-       const event_receiver =querySepoliaReceiver.data?.msgReceiveds.find(event=>event.transactionId==item.transactionId) || {};
+       const event_receiver =querySepoliaReceiver?.msgReceiveds.find(event=>event.transactionId==item.transactionId) || {};
        _item.transactionId = truncate(item.transactionId, { nPrefix: 1 })
         _item.address = truncate(item.sender, { nPrefix: 1 })
         _item.avax = ethers.formatEther(item.tokenAmount);
@@ -36,6 +45,7 @@ const MovementsTable = () => {
         _item.totalReceived = ethers.formatEther(item.tokenAmount) * fujiEthPrice 
         _item.status = event_receiver ? "Completed" :  "Processing ...";
         _item.transactionDate = new Date(item.timestamp * 1000).toString()
+        _item.date= new Date(item.timestamp * 1000)
         transactions.push(_item)
     })
   return (
@@ -51,7 +61,7 @@ const MovementsTable = () => {
     
   </section>
   <section>
-       {transactions.map((item, index) => (
+      {transactions.sort((a,b)=>b.date - a.date).map((item, index) => (
        <div key={index}  className="detail-transaction grid grid-cols-12 w-[1400px] bg-[#fafafa] shadow-md p-[16px]">
            <div className="flex flex-col gap-1 items-center justify-center truncate overflow-hidden ..." title={item.transactionId}>{item.transactionId}</div>
         <div className="flex flex-col gap-1 items-center justify-center truncate overflow-hidden ..." title={item.address}>{item.address}</div>
