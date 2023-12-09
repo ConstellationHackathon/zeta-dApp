@@ -23,7 +23,6 @@ const Swap = () => {
       );
       const jsonData = await data.json();
       setFujiEthPrice(jsonData["avalanche-2"].eth);
-      console.log(jsonData["avalanche-2"].eth);
     };
 
     getFujiEthPrice();
@@ -42,7 +41,6 @@ const Swap = () => {
   };
 
   const onDoneButton = () => {
-    console.log("done button");
 
     setResponseModal(true);
     setIsModalOpen(false);
