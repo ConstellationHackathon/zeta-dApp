@@ -10,7 +10,7 @@ const MovementsTable = () => {
     const [time, setTime] = useState(new Date());
     type ApiResponse = {
     };
-    const transaction : any = []
+    const transactions : any = []
 
     const { loading, error, data, refetch: refetchAvaxSenderEvents } = useQuery(AvaxSenderEvents);
     const { data: querySepoliaReceiver, refetch: refetchSepoliaReceiveMsg } = useQuery(SepoliaReceiveMsg);
