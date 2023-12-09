@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent } from "react";
 import InitialModal from "./InitialModal";
 import Image from "next/image";
 import ResponseModal from "./ResponseModal";
+import { IconClose } from "./Icon";
 
 const Swap = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -46,7 +47,7 @@ const Swap = () => {
                 aria-label="Select Coin"
                 className="bg-transparent"
               >
-                <option value="AVAX" className="text-black">
+                <option data-img_src="/assets/logo.png" value="AVAX" className="text-black">
                   AVAX
                 </option>
                 <option value="BTC" className="text-black">
