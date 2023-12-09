@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import InitialModal from "./InitialModal";
 import Image from "next/image";
 import ResponseModal from "./ResponseModal";
@@ -9,7 +9,24 @@ const Swap = () => {
   const [responseModal, setResponseModal] = useState(false);
   const [selectedCoin, setSelectedCoin] = useState<string>("AVAX1");
   const [fromValue, setFromValue] = useState<number | null>(null);
-  const [toValue, setToValue] = useState<number>(0);
+  const [fujiEthPrice, setFujiEthPrice] = useState<number>(0);
+  const [estimatedReceived, setEstimatedReceived] = useState<number>(0);
+  const [fee, setFee] = useState<number>(0);
+  useEffect(() => {
+    const getFujiEthPrice = async () => {
+      const data = await fetch(
+        "https://api.coingecko.com/api/v3/simple/price?ids=avalanche-2&vs_currencies=eth",
+        {
+          method: "GET",
+        }
+      );
+      const jsonData = await data.json();
+      setFujiEthPrice(jsonData["avalanche-2"].eth);
+      console.log(jsonData["avalanche-2"].eth);
+    };
+
+    getFujiEthPrice();
+  }, []);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -25,11 +42,16 @@ const Swap = () => {
 
   const onDoneButton = () => {
     console.log("done button");
-    
+
     setResponseModal(true);
     setIsModalOpen(false);
   };
-
+  const onChangeFromValue = (event: ChangeEvent<HTMLInputElement>) => {
+    setFromValue(parseFloat(event.target.value));
+    const fee = (parseFloat(event.target.value) * fujiEthPrice) / 100;
+    setEstimatedReceived((parseFloat(event.target.value) * fujiEthPrice) - fee);
+    setFee(fee);
+  }
   return (
     <div className="flex flex-col justify-center items-center w-full h-screen bg-[#f4f4f4] text-black gap-8">
       <Image src="/assets/logo.png" width={100} height={100} alt="zeta Logo" />
@@ -40,10 +62,10 @@ const Swap = () => {
             <div>AVAX</div>
           </div>
           <div className="flex w-full justify-between items-center">
-            <input 
-              type="number" 
+            <input
+              type="number"
               value={fromValue!}
-              onChange={(e) => setFromValue(parseFloat(e.target.value))} 
+              onChange={onChangeFromValue}
               className="bg-[#E84142] text-white border-none"
               placeholder="Amount to send . . ."
             />
@@ -72,13 +94,7 @@ const Swap = () => {
             <div>Ethereum</div>
           </div>
           <div className="flex w-full justify-between items-center">
-            <input 
-              type="number" 
-              value={toValue} 
-              onChange={(e) => setToValue(parseFloat(e.target.value))} 
-              className="bg-[#E84142] text-white border-none"
-              disabled={true}
-            />
+            <div>{estimatedReceived-fee}</div>
             <div className="bg-[#E84142] px-4 py-2 border-2 border-white rounded-[12px] ">
               <label htmlFor="coinSelectTo" />
               <select
@@ -119,11 +135,11 @@ const Swap = () => {
         <div className="mt-8">
           <div className="flex justify-between">
             <div>Fees</div>
-            <div>0.055 ETH</div>
+            <div>{`${fee} ETH`}</div>
           </div>
           <div className="flex justify-between">
             <div>Estimated Received</div>
-            <div>0.9574293 ETH</div>
+            <div>{`${estimatedReceived} ETH`}</div>
           </div>
         </div>
       </div>
