@@ -55,8 +55,6 @@ const FollowInfoModal: React.FC<ResponseModalProps> = ({
   const [recentFundsTransferred, setRecentFundsTransferred] =
     useState<FundsTransferred>();
     useEffect(() => {
-      console.log(dataAvax);
-      console.log(dataSepolia);
       
       
      const interval = setInterval(() => {
@@ -68,41 +66,17 @@ const FollowInfoModal: React.FC<ResponseModalProps> = ({
       return () => clearInterval(interval); 
     }, [refetchAvaxSenderEvents, refetchSepoliaReceiveMsg]);
 
-  // useEffect(() => {
-    // console.log(dataAvax);
-    // console.log(dataSepolia);
-    // processDataAvax();
-    // processDataSepolia();
-    // const interval = setInterval(() => {
-    //   console.log(dataAvax);
-    // console.log(dataSepolia);
-    //   console.log("fetch events on follow modal");
-    //   refetch();
-    //   refetchSepolia();
-    //   processDataAvax();
-    //   processDataSepolia();
-    // }, 5000);
-    // return () => clearInterval(interval); 
-  // }, [refetch, refetchSepolia]);
     const calculate = () => {
-      console.log("calculate");
       if (!dataAvax || !dataSepolia) return;
-      console.log("calculate 2 step");
       const avaxReceived: AvaxReceived[] = dataAvax?.avaxReceiveds;
       const usdAvaxSent: UsdAvaxSent[] = dataAvax?.amountSentInUSDs;
       const msgReceived: MsgReceived[] = dataSepolia?.msgReceiveds;
       const fundsTransferred: FundsTransferred[] = dataSepolia?.fundsTransferreds;
-      console.log('avaxreceived is', avaxReceived);
-      console.log(senderInfo);
       
       const senderAvaxTXs = avaxReceived.filter(element => element.sender.toLowerCase() === senderInfo.toLowerCase());
       const senderUsdTXs = usdAvaxSent.filter(element => element.sender.toLowerCase() === senderInfo.toLowerCase());
       const senderMsgTXs = msgReceived.filter(element => element.userAddress.toLowerCase() === senderInfo.toLowerCase());
       const senderFundsTXs = fundsTransferred.filter(element => element.recipient.toLowerCase() === senderInfo.toLowerCase());
-      console.log("senderAvaxTXs", senderAvaxTXs);
-      console.log("senderUsdTXs", senderUsdTXs);
-      console.log("senderMsgTXs", senderMsgTXs);
-      console.log("senderFundsTXs", senderFundsTXs);
       processDataAvax(senderAvaxTXs, senderUsdTXs);
       processDataSepolia(senderMsgTXs, senderFundsTXs);
     }
@@ -115,9 +89,6 @@ const FollowInfoModal: React.FC<ResponseModalProps> = ({
     const mostRecentUsdAvaxSent: UsdAvaxSent = mostRecentItem(
       usdAvaxSent
     ) as UsdAvaxSent;
-    console.log("funds sent to avax", mostRecentUsdAvaxSent);
-    console.log("most recent avax received is ", mostRecentAvaxReceived);
-    console.log("most recent usd avax sent is ", mostRecentUsdAvaxSent);
     setRecentAvaxReceived(mostRecentAvaxReceived);
     setRecentUsdAvaxSent(mostRecentUsdAvaxSent);
   };
@@ -130,12 +101,6 @@ const FollowInfoModal: React.FC<ResponseModalProps> = ({
     const mostRecentFundsTransferred: FundsTransferred = mostRecentItemSepolia(
       fundsTransferred
       ) as FundsTransferred;
-    console.log("fundsTransferred", fundsTransferred);
-    console.log("most recent msg received is ", mostRecentMsgReceived);
-    console.log(
-      "most recent funds transferred is ",
-      mostRecentFundsTransferred
-    );
     setRecentMsgReceived(mostRecentMsgReceived);
     setRecentFundsTransferred(mostRecentFundsTransferred);
   };

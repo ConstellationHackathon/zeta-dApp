@@ -22,24 +22,24 @@ export const IconRight_2 = () => {
     )
 }
 
-export const IconAvalanche = () => {
+export const IconAvalanche = ({ width = 32, height = 32 }) => {
     return (
         <Image
             src="/assets/Coin=Avalanche.png"
             alt="Avalanche"
-            width={32}
-            height={32}
+            width={width}
+            height={height}
         />
     )
 }
 
-export const IconEthereum = () => {
+export const IconEthereum = ({ width = 32, height = 32 }) => {
     return (
         <Image
             src="/assets/Coin=Ethereum.png"
             alt="Avalanche"
-            width={32}
-            height={32}
+            width={width}
+            height={height}
         />
     )
 }
