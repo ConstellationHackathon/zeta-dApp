@@ -25,6 +25,9 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+.zeta{
+    padding-top: 220px;
+}
 .movement-table .grid{
     border: 1px solid #e3e3e3;
 }
