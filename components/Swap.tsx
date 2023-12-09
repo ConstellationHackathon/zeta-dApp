@@ -72,10 +72,11 @@ const Swap = () => {
           </div>
           <div className="flex w-full justify-between items-center">
             <input 
-              type="text" 
+              type="number" 
               value={toValue} 
-              onChange={(e) => setToValue(e.target.value)} 
+              onChange={(e) => setToValue(parseFloat(e.target.value))} 
               className="bg-[#E84142] text-white border-none"
+              disabled={true}
             />
             <div className="bg-[#E84142] px-4 py-2 border-2 border-white rounded-[12px] ">
               <label htmlFor="coinSelectTo" />
