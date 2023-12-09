@@ -78,7 +78,8 @@ const MovementsTable = () => {
           {transactions.sort((a, b) => b.date - a.date).map((item, index) => (
           <div
             key={index}
-            className="detail-transaction grid grid-cols-12 w-[1400px] bg-[#fafafa] shadow-md p-[16px] text-black rounded-b-[4px]"
+            className="detail-transaction grid grid-cols-12 w-[1400px] bg-[#fafafa] shadow-md p-[16px] text-black rounded-b-[4px]
+            even:bg-[#f4f4f4]"
           >
             <div
               className="flex flex-col gap-1 items-center justify-center truncate overflow-hidden  ..."
