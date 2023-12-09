@@ -50,31 +50,78 @@ const MovementsTable = () => {
         transactions.push(_item)
     })
   return (
-    <div className="movement-table flex flex-col justify-center items-center bg-[#fafafa] shadow-sm p-[16px] gap-2 w-full">
-  <section  className="grid grid-cols-12 w-[1400px] bg-[#fafafa] shadow-md p-[16px] rounded-[8px]">
-      <div className="flex flex-col gap-1 items-center justify-center text-center">Transaction Id</div>
-      <div className="flex flex-col gap-1 items-center justify-center text-center">Address</div>
-      <div className="flex flex-col gap-2 col-span-2 items-center justify-center text-center">Total Avax</div>
-      <div className="flex flex-col gap-2 col-span-2 items-center justify-center text-center">Avax/Eth</div>
-      <div className="flex flex-col gap-2 col-span-2 items-center justify-center text-center">Total recived</div>
-      <div className="flex flex-col gap-1 col-span-2 items-center justify-center text-center">Status</div>
-      <div className="flex flex-col gap-2 col-span-2 items-center justify-center text-center">Date</div>
-    
-  </section>
-  <section>
-      {transactions.sort((a,b)=>b.date - a.date).map((item, index) => (
-       <div key={index}  className="detail-transaction grid grid-cols-12 w-[1400px] bg-[#fafafa] shadow-md p-[16px]">
-           <div className="flex flex-col gap-1 items-center justify-center truncate overflow-hidden ..." title={item.transactionId}>{item.transactionId}</div>
-        <div className="flex flex-col gap-1 items-center justify-center truncate overflow-hidden ..." title={item.address}>{item.address}</div>
-        <div className="flex flex-col gap-2 col-span-2 items-center justify-center" title={item.avax}>{item.avax}</div>
-        <div className="flex flex-col gap-2 col-span-2 items-center justify-center" title={item.eth}>{item.eth}</div>
-        <div className="flex flex-col gap-2 col-span-2 items-center justify-center" title={item.totalReceived}>{item.totalReceived}</div>
-        <div className="flex flex-col gap-1 col-span-2 items-center justify-center" title={item.status}>{item.status}</div>
-        <div className="flex flex-col gap-2 col-span-2 items-center justify-center">{item.transactionDate}</div>
-      </div>
-      ))}
-  </section>
-
+    <div className="movement-table flex flex-col justify-center items-center bg-[#fafafa] shadow-sm p-16 gap-2 w-full text-black">
+      <section className="grid grid-cols-12 w-[1400px] bg-[#E84142] shadow-md p-[16px] rounded-tl-[24px] rounded-tr-[24px] text-white font-bold">
+        <div className="flex flex-col gap-1 items-center justify-center text-center">
+          Transaction Id
+        </div>
+        <div className="flex flex-col gap-1 items-center justify-center text-center">
+          Address
+        </div>
+        <div className="flex flex-col gap-2 col-span-2 items-center justify-center text-center">
+          Total Avax
+        </div>
+        <div className="flex flex-col gap-2 col-span-2 items-center justify-center text-center">
+          Avax/Eth
+        </div>
+        <div className="flex flex-col gap-2 col-span-2 items-center justify-center text-center">
+          Total recived
+        </div>
+        <div className="flex flex-col gap-1 col-span-2 items-center justify-center text-center">
+          Status
+        </div>
+        <div className="flex flex-col gap-2 col-span-2 items-center justify-center text-center">
+          Date
+        </div>
+      </section>
+      <section>
+          {transactions.sort((a, b) => b.date - a.date).map((item, index) => (
+          <div
+            key={index}
+            className="detail-transaction grid grid-cols-12 w-[1400px] bg-[#fafafa] shadow-md p-[16px] text-black "
+          >
+            <div
+              className="flex flex-col gap-1 items-center justify-center truncate overflow-hidden  ..."
+              title={item.transactionId}
+            >
+              {item.transactionId}
+            </div>
+            <div
+              className="flex flex-col gap-1 items-center justify-center truncate overflow-hidden ..."
+              title={item.address}
+            >
+              {item.address}
+            </div>
+            <div
+              className="flex flex-col gap-2 col-span-2 items-center justify-center"
+              title={item.avax}
+            >
+              {item.avax}
+            </div>
+            <div
+              className="flex flex-col gap-2 col-span-2 items-center justify-center"
+              title={item.eth}
+            >
+              {item.eth}
+            </div>
+            <div
+              className="flex flex-col gap-2 col-span-2 items-center justify-center font-semibold"
+              title={item.totalReceived}
+            >
+              {item.totalReceived}
+            </div>
+            <div
+              className="flex flex-col gap-1 col-span-2 items-center justify-center text-green-600 font-semibold"
+              title={item.status}
+            >
+              {item.status}
+            </div>
+            <div className="flex flex-col gap-2 col-span-2 items-center justify-center">
+              {item.transactionDate}
+            </div>
+          </div>
+        ))}
+      </section>
     </div>
   );
 };

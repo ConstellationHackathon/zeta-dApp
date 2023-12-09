@@ -33,7 +33,7 @@ const InitialModal: React.FC<ResponseModalProps> = ({
           to the address
         </div>
         <div className="font-semibold">
-          0x6D824716d4A7a20Bdf95b3286530240bAE3Bf7C0
+          0xe520Cad33d788e38FE7d7Dced1b7e11bb0457B9C
         </div>
         <div className="flex gap-4 items-center">
           <div className="flex gap-2">

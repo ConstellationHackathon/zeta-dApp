@@ -8,11 +8,17 @@ interface ResponseModalProps {
   closeModal: () => void;
   estimatedReceived: number;
   fee: number;
+  fromValue: number | null;
 }
 
 Modal.setAppElement("#__next");
 
-const ResponseModal: React.FC<ResponseModalProps> = ({ closeModal, estimatedReceived, fee }) => {
+const ResponseModal: React.FC<ResponseModalProps> = ({
+  closeModal,
+  estimatedReceived,
+  fee,
+  fromValue,
+}) => {
   const [scanOn, setScanOn] = useState(false);
   const [senderInfo, setSenderInfo] = useState<string>("");
   const [isAddressValid, setIsAddressValid] = useState(true);
@@ -34,7 +40,10 @@ const ResponseModal: React.FC<ResponseModalProps> = ({ closeModal, estimatedRece
 
   if (scanOn) {
     return (
-      <FollowInfoModal closeModal={() => setScanOn(false)} senderInfo={senderInfo}/>
+      <FollowInfoModal
+        closeModal={() => setScanOn(false)}
+        senderInfo={senderInfo}
+      />
     );
   }
 
@@ -47,27 +56,28 @@ const ResponseModal: React.FC<ResponseModalProps> = ({ closeModal, estimatedRece
       overlayClassName="fixed inset-0 bg-black bg-opacity-20"
     >
       <div className="flex flex-col items-center justify-center gap-4 w-full">
-        <div className='flex gap-2'>
-            You are exchanging
-            <span className='font-semibold'>XXXX</span>
-            <IconAvalanche />
-            <span className='font-semibold'>AVAX</span>
+        <div className="flex gap-2">
+          You are exchanging
+          <span className="font-semibold">{fromValue}</span>
+          <IconAvalanche />
+          <span className="font-semibold">AVAX</span>
         </div>
-        <div className='flex gap-4 items-center'>
-            <div className='flex gap-2'>
-                <IconAvalanche />
-                AVAX
-            </div>
-            <IconRight />
-            <div className='flex gap-2'>
-                <IconEthereum />
-                ETH
-            </div>
+        <div className="flex gap-4 items-center">
+          <div className="flex gap-2">
+            <IconAvalanche />
+            AVAX
+          </div>
+          <IconRight />
+          <div className="flex gap-2">
+            <IconEthereum />
+            ETH
+          </div>
         </div>
       </div>
       <div className="flex flex-col w-full gap-4">
-        <div className="flex justify-center">
-          If you want to follow your transaction, <br /> please put your address below
+        <div className="flex justify-center items-center text-center w-full">
+          If you want to follow your last transaction, please put your address
+          below
         </div>
         <div className="flex flex-col w-full px-4 pt-3 pb-6 gap-2 rounded-[12px] bg-[#E84142]">
           <p className="text-white">Address</p>
@@ -96,7 +106,11 @@ const ResponseModal: React.FC<ResponseModalProps> = ({ closeModal, estimatedRece
           {"Or just continue"}
         </div>
       </div>
-      <button className="absolute right-[16px] top-[16px]" onClick={closeModal} title="Close Modal+">
+      <button
+        className="absolute right-[16px] top-[16px]"
+        onClick={closeModal}
+        title="Close Modal+"
+      >
         <IconClose />
       </button>
     </Modal>
