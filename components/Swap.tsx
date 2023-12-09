@@ -125,6 +125,8 @@ const Swap = () => {
           <InitialModal
             closeModal={() => setIsModalOpen(false)}
             onDoneButton={onDoneButton}
+            estimatedReceived={estimatedReceived}
+            fee={fee}
           />
         )}
         {responseModal && (
