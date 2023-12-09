@@ -34,3 +34,7 @@ body {
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
 }
+
+.movement-table .table-header{
+  border-bottom: 2px solid black;
+}
