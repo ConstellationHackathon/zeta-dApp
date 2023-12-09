@@ -51,6 +51,7 @@ const InitialModal: React.FC<ResponseModalProps> =  ({ closeModal, onDoneButton 
             <button
                 className='absolute right-[16px] top-[16px]'
                 onClick={closeModal}
+                title="Close Modal"
             >
                 <IconClose/>
             </button>
