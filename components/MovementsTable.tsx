@@ -98,13 +98,13 @@ const MovementsTable = () => {
               {item.eth}
             </div>
             <div
-              className="flex flex-col gap-2 col-span-2 items-center justify-center"
+              className="flex flex-col gap-2 col-span-2 items-center justify-center font-semibold"
               title={item.totalReceived}
             >
               {item.totalReceived}
             </div>
             <div
-              className="flex flex-col gap-1 col-span-2 items-center justify-center"
+              className="flex flex-col gap-1 col-span-2 items-center justify-center text-green-600 font-semibold"
               title={item.status}
             >
               {item.status}
