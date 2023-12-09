@@ -30,4 +30,14 @@ body {
 }
 .movement-table .grid{
     border: 1px solid #e3e3e3;
+    border-bottom: 1px solid #E84142;
+    margin-bottom: 4px;
+}
+.movement-table .grid:last-child{
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+}
+
+.movement-table .table-header{
+  border-bottom: 2px solid black;
 }
