@@ -29,7 +29,6 @@ const ResponseModal: React.FC<ResponseModalProps> = ({
   };
 
   const onFollowTransaction = () => {
-    console.log("on follow transaction");
     if (ethers.isAddress(senderInfo)) {
       setIsAddressValid(true);
       setScanOn(true);
