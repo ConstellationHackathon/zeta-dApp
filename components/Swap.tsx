@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import InitialModal from "./InitialModal";
 import Image from "next/image";
 import ResponseModal from "./ResponseModal";
@@ -8,7 +8,22 @@ const Swap = () => {
   const [responseModal, setResponseModal] = useState(false);
   const [selectedCoin, setSelectedCoin] = useState<string>("AVAX1");
   const [fromValue, setFromValue] = useState<number | null>(null);
-  const [toValue, setToValue] = useState<number>(0);
+  const [fujiEthPrice, setFujiEthPrice] = useState<number>(0);
+  useEffect(() => {
+    const getFujiEthPrice = async () => {
+      const data = await fetch(
+        "https://api.coingecko.com/api/v3/simple/price?ids=avalanche-2&vs_currencies=eth",
+        {
+          method: "GET",
+        }
+      );
+      const jsonData = await data.json();
+      setFujiEthPrice(jsonData["avalanche-2"].eth);
+      console.log(jsonData["avalanche-2"].eth);
+    };
+
+    getFujiEthPrice();
+  }, []);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -24,7 +39,7 @@ const Swap = () => {
 
   const onDoneButton = () => {
     console.log("done button");
-    
+
     setResponseModal(true);
     setIsModalOpen(false);
   };
@@ -39,10 +54,10 @@ const Swap = () => {
             <div>AVAX</div>
           </div>
           <div className="flex w-full justify-between items-center">
-            <input 
-              type="number" 
+            <input
+              type="number"
               value={fromValue!}
-              onChange={(e) => setFromValue(parseFloat(e.target.value))} 
+              onChange={(e) => setFromValue(parseFloat(e.target.value))}
               className="bg-[#E84142] text-white border-none"
               placeholder="Amount to send . . ."
             />
@@ -71,13 +86,7 @@ const Swap = () => {
             <div>Ethereum</div>
           </div>
           <div className="flex w-full justify-between items-center">
-            <input 
-              type="number" 
-              value={toValue} 
-              onChange={(e) => setToValue(parseFloat(e.target.value))} 
-              className="bg-[#E84142] text-white border-none"
-              disabled={true}
-            />
+            <div>{fromValue ? fromValue * fujiEthPrice : 0}</div>
             <div className="bg-[#E84142] px-4 py-2 border-2 border-white rounded-[12px] ">
               <label htmlFor="coinSelectTo" />
               <select
