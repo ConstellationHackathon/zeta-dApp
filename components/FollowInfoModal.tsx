@@ -5,8 +5,7 @@ import Modal from "react-modal";
 import { AvaxFetchAddress } from "@/graphql/FetchAddressAvax";
 import { useQuery } from "@apollo/client";
 import { ethers } from "ethers";
-import Loader from "react-loader-spinner";
-import { SepoliaReceiveMsg } from "@/graphql/FetchAddressSepolia";
+import { SepoliaReceiveMsgResponseModal } from "@/graphql/FetchAddressSepoliaReponseModal";
 interface ResponseModalProps {
   closeModal: () => void;
   senderInfo: string;
@@ -52,7 +51,7 @@ const FollowInfoModal: React.FC<ResponseModalProps> = ({
     data: dataSepolia,
     refetch: refetchSepolia,
     loading: loadingSepolia,
-  } = useQuery(SepoliaReceiveMsg, {
+  } = useQuery(SepoliaReceiveMsgResponseModal, {
     variables: { sender: senderInfo },
   });
   const [recentAvaxReceived, setRecentAvaxReceived] = useState<AvaxReceived>();
@@ -114,11 +113,15 @@ const FollowInfoModal: React.FC<ResponseModalProps> = ({
     setRecentUsdAvaxSent(mostRecentUsdAvaxSent);
   };
   const processDataSepolia = () => {
+    console.log('fundsTransferred is',dataSepolia?.fundsTransferreds);
+    
     const msgReceived: MsgReceived[] = dataSepolia?.msgReceiveds;
     const fundsTransferred: FundsTransferred[] = dataSepolia?.fundsTransferreds;
     const mostRecentMsgReceived: MsgReceived = mostRecentItemSepolia(
       msgReceived
     ) as MsgReceived;
+    console.log('fundsTransferred', fundsTransferred);
+    
     const mostRecentFundsTransferred: FundsTransferred = mostRecentItemSepolia(
       fundsTransferred
     ) as FundsTransferred;
@@ -131,6 +134,7 @@ const FollowInfoModal: React.FC<ResponseModalProps> = ({
     setRecentFundsTransferred(mostRecentFundsTransferred);
   };
   const mostRecentItem = (elements: AvaxReceived[] | UsdAvaxSent[]) => {
+    if(!elements || elements === undefined) return null;
     const elementWithMaxTimestamp: AvaxReceived | UsdAvaxSent = elements.reduce(
       (max, item) => {
         return parseInt(item.timestamp) > parseInt(max.timestamp) ? item : max;
@@ -141,6 +145,7 @@ const FollowInfoModal: React.FC<ResponseModalProps> = ({
   const mostRecentItemSepolia = (
     elements: MsgReceived[] | FundsTransferred[]
   ) => {
+    if(!elements || elements === undefined) return null;
     const elementWithMaxTimestamp: MsgReceived | FundsTransferred =
       elements.reduce((max, item) => {
         return parseInt(item.timestamp) > parseInt(max.timestamp) ? item : max;
@@ -232,8 +237,7 @@ const FollowInfoModal: React.FC<ResponseModalProps> = ({
   };
   const PaidOnDestiny = () => {
     if (
-      recentMsgReceived?.amountToTransferUSD === recentUsdAvaxSent?.amountSent && 
-      recentFundsTransferred?.timestamp === recentMsgReceived?.timestamp
+      recentMsgReceived?.amountToTransferUSD === recentUsdAvaxSent?.amountSent
     ) {
       return (
         <div className="flex flex-col border-b py-2">
