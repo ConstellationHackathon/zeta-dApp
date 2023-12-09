@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, useEffect } from "react";
 import InitialModal from "./InitialModal";
 import Image from "next/image";
 import ResponseModal from "./ResponseModal";
-import { IconClose, IconRight_2 } from "./Icon";
+import { IconAvalanche, IconClose, IconEthereum, IconRight_2 } from "./Icon";
 
 const Swap = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,7 +59,7 @@ const Swap = () => {
         <div className="flex flex-col gap-3 w-full bg-[#E84142] text-white p-[24px] rounded-tl-[16px] rounded-tr-[16px]">
           <div className="flex w-full justify-between font-semibold">
             <div>From</div>
-            <div>Avalanche</div>
+            <div className="flex gap-1">Avalanche<IconAvalanche width={24} height={24}/></div>
           </div>
           <div className="flex w-full justify-between items-center">
             <input
@@ -95,7 +95,7 @@ const Swap = () => {
         <div className="flex flex-col gap-3 w-full bg-[#E84142] text-white p-[24px] rounded-bl-[16px] rounded-br-[16px]">
           <div className="flex w-full justify-between font-semibold">
             <div>To (estimated)</div>
-            <div>Ethereum</div>
+            <div className="flex gap-1">Ethereum<IconEthereum width={24} height={24}/></div>
           </div>
           <div className="flex w-full justify-between items-center">
             <div className="font-bold text-xl">{estimatedReceived ? (estimatedReceived - fee) : 0}</div>
@@ -120,7 +120,7 @@ const Swap = () => {
         </div>
 
         <button
-          className="bg-black text-white rounded-full py-[8px] font-semibold border-b-2 hover:bg-[#E84142] text-lg hover:border-b-2 hover:border-black "
+          className="bg-black text-white rounded-full py-[8px] font-semibold border-b-2 hover:bg-[#E84142] text-lg hover:border-2 hover:border-black "
           onClick={openModal}
         >
           Exchange now
