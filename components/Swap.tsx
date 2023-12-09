@@ -139,6 +139,7 @@ const Swap = () => {
             closeModal={() => setResponseModal(false)}
             estimatedReceived={estimatedReceived}
             fee={fee}
+            fromValue={fromValue}
           />
         )}
         <div className="text-center">Send to another address</div>
