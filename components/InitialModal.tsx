@@ -5,6 +5,7 @@ interface ResponseModalProps {
   onDoneButton: () => void;
   estimatedReceived: number;
   fee: number;
+  fromValue: number | null;
 }
 Modal.setAppElement("#__next");
 const InitialModal: React.FC<ResponseModalProps> = ({
@@ -12,6 +13,7 @@ const InitialModal: React.FC<ResponseModalProps> = ({
   onDoneButton,
   estimatedReceived,
   fee,
+  fromValue
 }) => {
   return (
     <Modal
@@ -25,7 +27,7 @@ const InitialModal: React.FC<ResponseModalProps> = ({
       <div className="flex flex-col w-full gap-3 items-center">
         <div className="flex gap-2">
           Send
-          <span className="font-semibold">{estimatedReceived-fee}</span>
+          <span className="font-semibold">{fromValue}</span>
           <IconAvalanche />
           <span className="font-semibold">AVAX</span>
           to the address
