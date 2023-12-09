@@ -16,8 +16,6 @@ const MovementsTable = () => {
     const { loading, error, data, refetch: refetchAvaxSenderEvents } = useQuery(AvaxSenderEvents);
     const { data: querySepoliaReceiver, refetch: refetchSepoliaReceiveMsg } = useQuery(SepoliaReceiveMsg);
     const [fujiEthPrice, setResult] = useState<ApiResponse | null>(null);
-
-      useEffect(() => {
         const getFujiEthPrice = async () => {
           const data = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=avalanche-2&vs_currencies=eth", {
             method: "GET"
@@ -25,8 +23,10 @@ const MovementsTable = () => {
           const jsonData = await data.json();
           setResult(jsonData["avalanche-2"].eth);
         };
-
-        getFujiEthPrice();
+        if (!fujiEthPrice){
+            getFujiEthPrice();
+        }
+      useEffect(() => {
        const interval = setInterval(() => {
             refetchAvaxSenderEvents();  // Refetch AvaxSenderEvents data
             refetchSepoliaReceiveMsg(); // Refetch SepoliaReceiveMsg data

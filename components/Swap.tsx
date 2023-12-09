@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent, useEffect } from "react";
 import InitialModal from "./InitialModal";
 import Image from "next/image";
+import MovementsTable from "@/components/MovementsTable";
 import ResponseModal from "./ResponseModal";
 import { IconAvalanche, IconClose, IconEthereum, IconRight_2 } from "./Icon";
 
@@ -22,7 +23,6 @@ const Swap = () => {
       );
       const jsonData = await data.json();
       setFujiEthPrice(jsonData["avalanche-2"].eth);
-      console.log(jsonData["avalanche-2"].eth);
     };
 
     getFujiEthPrice();
@@ -41,7 +41,6 @@ const Swap = () => {
   };
 
   const onDoneButton = () => {
-    console.log("done button");
 
     setResponseModal(true);
     setIsModalOpen(false);
@@ -53,7 +52,8 @@ const Swap = () => {
     setFee(fee);
   };
   return (
-    <div className="flex flex-col justify-center items-center w-full h-screen bg-[#f4f4f4] text-black gap-8">
+  <div className="w-full h-screen ">
+    <div className="zeta flex flex-col justify-center items-center bg-[#f4f4f4] text-black gap-5">
       <Image src="/assets/logo.png" width={100} height={100} alt="zeta Logo" />
       <div className="flex flex-col w-[640px] bg-[#fafafa] shadow-md p-[32px] rounded-[24px] gap-2">
         <div className="flex flex-col gap-3 w-full bg-[#E84142] text-white p-[24px] rounded-tl-[16px] rounded-tr-[16px]">
@@ -142,13 +142,6 @@ const Swap = () => {
             fromValue={fromValue}
           />
         )}
-        <div className="flex text-lg text-center font-semibold hover:text-[#E84142] items-center justify-center">
-            <p>
-                Send to another address
-            </p>
-            <IconRight_2 />
-        </div>
-
         <div className="flex flex-col gap-2 mt-8">
           <div className="flex justify-between">
             <div>Fees</div>
@@ -161,6 +154,9 @@ const Swap = () => {
         </div>
       </div>
     </div>
+    <MovementsTable />
+    </div>
+
   );
 };
 
