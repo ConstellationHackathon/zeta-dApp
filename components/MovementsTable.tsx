@@ -51,7 +51,7 @@ const MovementsTable = () => {
     })
   return (
     <div className="movement-table flex flex-col justify-center items-center bg-[#fafafa] shadow-sm p-16 gap-2 w-full text-black">
-      <section className="grid grid-cols-12 w-[1400px] bg-[#E84142] shadow-md p-[16px] rounded-t-[24px] rounded-b-[4px] text-white font-bold">
+      <section className="grid table-header grid-cols-12 w-[1400px] bg-[#E84142] shadow-md p-[16px] rounded-t-[24px] rounded-b-[4px] text-white font-bold">
         <div className="flex flex-col gap-1 items-center justify-center text-center">
           Transaction Id
         </div>

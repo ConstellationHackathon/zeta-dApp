@@ -120,7 +120,7 @@ const Swap = () => {
         </div>
 
         <button
-          className="bg-black text-white rounded-full py-[8px] font-semibold hover:bg-[#E84142] text-lg"
+          className="bg-black text-white rounded-full py-[8px] font-semibold border-b-2 hover:bg-[#E84142] text-lg hover:border-b-2 hover:border-black "
           onClick={openModal}
         >
           Exchange now
