@@ -52,14 +52,13 @@ const Swap = () => {
     setFee(fee);
   };
   return (
-  <div className="w-full h-screen ">
-    <div className="zeta flex flex-col justify-center items-center bg-[#f4f4f4] text-black gap-5">
+    <div className="zeta flex flex-col justify-center items-center bg-[#f4f4f4] text-black gap-5 py-16">
       <Image src="/assets/logo.png" width={100} height={100} alt="zeta Logo" />
       <div className="flex flex-col w-[640px] bg-[#fafafa] shadow-md p-[32px] rounded-[24px] gap-2">
         <div className="flex flex-col gap-3 w-full bg-[#E84142] text-white p-[24px] rounded-tl-[16px] rounded-tr-[16px]">
           <div className="flex w-full justify-between font-semibold">
             <div>From</div>
-            <div className="flex gap-1">Avalanche<IconAvalanche /></div>
+            <div className="flex gap-1">Avalanche<IconAvalanche width={24} height={24} /></div>
           </div>
           <div className="flex w-full justify-between items-center">
             <input
@@ -95,7 +94,7 @@ const Swap = () => {
         <div className="flex flex-col gap-3 w-full bg-[#E84142] text-white p-[24px] rounded-bl-[16px] rounded-br-[16px]">
           <div className="flex w-full justify-between font-semibold">
             <div>To (estimated)</div>
-            <div className="flex gap-1">Ethereum<IconEthereum /></div>
+            <div className="flex gap-1">Ethereum<IconEthereum width={24} height={24} /></div>
           </div>
           <div className="flex w-full justify-between items-center">
             <div className="font-bold text-xl">{estimatedReceived ? (estimatedReceived - fee) : 0}</div>
@@ -153,8 +152,6 @@ const Swap = () => {
           </div>
         </div>
       </div>
-    </div>
-    <MovementsTable />
     </div>
 
   );
