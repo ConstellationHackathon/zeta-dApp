@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, useEffect } from "react";
 import InitialModal from "./InitialModal";
 import Image from "next/image";
 import MovementsTable from "@/components/MovementsTable";
-import { IconClose, IconRight_2 } from "./Icon";
+import { IconAvalanche, IconClose, IconEthereum, IconRight_2 } from "./Icon";
 import ResponseModal from "./ResponseModal";
 
 const Swap = () => {
@@ -59,7 +59,7 @@ const Swap = () => {
         <div className="flex flex-col gap-3 w-full bg-[#E84142] text-white p-[24px] rounded-tl-[16px] rounded-tr-[16px]">
           <div className="flex w-full justify-between font-semibold">
             <div>From</div>
-            <div>Avalanche</div>
+            <div className="flex gap-1">Avalanche<IconAvalanche /></div>
           </div>
           <div className="flex w-full justify-between items-center">
             <input
@@ -95,7 +95,7 @@ const Swap = () => {
         <div className="flex flex-col gap-3 w-full bg-[#E84142] text-white p-[24px] rounded-bl-[16px] rounded-br-[16px]">
           <div className="flex w-full justify-between font-semibold">
             <div>To (estimated)</div>
-            <div>Ethereum</div>
+            <div className="flex gap-1">Ethereum<IconEthereum /></div>
           </div>
           <div className="flex w-full justify-between items-center">
             <div className="font-bold text-xl">{estimatedReceived ? (estimatedReceived - fee) : 0}</div>
