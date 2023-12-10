@@ -15,7 +15,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/ConstellationHackathon">
-    <img src="thumbnail-zeta.jpeg" alt="Logo" width="2000" height=300">
+    <img src="thumbnail-zeta.jpeg" alt="Logo" width="2000" height=500">
   </a>
 
  <h3 align="center"> Jump in, jump safe, swap crypto 📍</h3>
@@ -24,9 +24,9 @@
   [Chainlink Constellation Hackathon](https://chain.link/hackathon)
 
  <br />
-    <a href="https://github.com/ConstellationHackathon"><strong>Explore the docs »</strong></a>
+    <a href="https://zeta-d-app-zeta-labs.vercel.app/"><strong>Test Zeta »</strong></a>
     <br />
-    <a href="https://github.com/ConstellationHackathon">View Demo</a>
+    <a href="https://youtu.be/F6dXKxEcLqA">View Demo</a>
     ·
     <a href="https://github.com/ConstellationHackathon">Report Bug</a>
     ·
@@ -37,24 +37,6 @@
 <br />
 
 
-<!-- TABLE OF CONTENTS -->
-
-# Table of Contents 
-
-1. [About de Project](#about-the-project)
-    - [Built With](#built-with)
-2. [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
-3. [Usage](#usage)
-4. [Roadmap](#roadmap)
-5. [Contributing](#contributing)
-6. [Licence](#license)
-7. [Contact](#contact)
-8. [Acknowledgments](#acknowledgments)
-
-<br />
-
 
 <!-- ABOUT THE PROJECT -->
 
@@ -62,25 +44,27 @@
 
 <br />
 
-[![Product Name Screen Shot][product-screenshot]](https://github.com/ConstellationHackathon)
+  
+[![Product Name Screen Shot][product-screenshot]](https://youtu.be/F6dXKxEcLqA?si=FP9LwJrPWqA2neM9)
+
 
 <br /> 
 
 
-<!-- ACÁ DEBE IR EL LINK QUE CORRE EL PRODUCTO -->
-
 Zeta is a cryptocurrency exchange that allows you to jump between different blockchain networks easily and securely. With Zeta, you don't need KYC or intermediaries. You only need to indicate which wallet you want to receive your money in, without connecting your wallet and exposing yourself to security risks. Zeta is the ideal platform for users who want to take advantage of the opportunities of cryptocurrencies, regardless of their level of experience or knowledge. Zeta is the easiest jump.
 
+>[Click to test Zeta](https://zeta-d-app-zeta-labs.vercel.app/)
 
 The entire process is outlined in the following diagram: 
 
 <br /> 
 
 <a href="https://github.com/ConstellationHackathon">
-    <img src="zeta-workflow.jpg" alt="Logo" width="1080" height=550">
+    <img src="zeta-workflow.jpg" alt="Logo" width="1080" height=800">
   </a>
 
 <br />
+
 
 ## Process Explanation:
 
@@ -91,7 +75,7 @@ Users seamlessly transfer their funds between different blockchain networks (e.g
 
 **2. User Transaction:**
 
-To initiate a transaction, users send funds to the provided wallet address and subsequently inform us of the sending wallet address. This allows Zeta to connect the user's action with the relevant on-chain smart contract, ensuring a smooth and efficient transaction process.
+To initiate a transaction, user send funds to the provided address and subsequently fill up the info of the sending wallet address. This allows Zeta to connect the user's action with the relevant on-chain smart contract, ensuring a smooth and efficient transaction process.
 
 **3. On-chain Smart Contract (Price Feed + CCIP):**
 
@@ -107,8 +91,10 @@ The Graph platform records all transaction events, including user funds received
 
 **Note:** During the MVP phase of this project, Zeta acts as the sole liquidity provider. All transactions will be executed upon user initiation and confirmation.
 
+> Click to see Zeta Demo bellow
+  
+[![Product Name Screen Shot][product-screenshot]](https://youtu.be/F6dXKxEcLqA?si=FP9LwJrPWqA2neM9)
 
-<!--  AQUÍ VA EL DEMOOOO -->
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -116,118 +102,55 @@ The Graph platform records all transaction events, including user funds received
 
 # Built With
 
-<!--
+
+[![Chainlink][chainlink]]()
+
+## Zeta's Participation in the Constellation Hackathon and Built With Technologies
+
+Zeta, as cross-chain exchange, is excited to participate in the Constellation Hackathon. We are including a variety of innovative technologies, such as:
 
 
-FastSwaps is proudly supported by the following sponsors:
+## Chainlink: 
 
-**Frontend Deployment:**
+- **Data Feeds:** Providing oracle price feeds for accurate cross-chain conversions.
+- **Cross-Chain Interoperability Protocol (CCIP):** Facilitating secure and seamless communication between different blockchain networks.
 
-[![NEAR][NEAR.org]][NEAR-url]
-
-Deployed using Near BOS, our frontend interfaces with three endpoints critical for watcher functionality and validating liquidity pools to execute transactions securely.
-
-<!-- Comment de Uso de NEAR BOS 
-
-**Protocol and Networks:**
+[![Prizes2][prizes2]]()
 
 
-[![Uniswap][Uniswap.org]][Uniswap-url]
+## Zeta is participating in the following categories:
 
-<!-- 
-[![Push][Push.org]][Push-url] Cow
-[![Push][Push.org]][Push-url] 
+- **Cross-chain Solutions:** Leveraging our innovative technology to provide a user-friendly cross-chain exchange experience.
+- **SocialFi Innovation:** Exploring how Zeta can be used to empower social finance initiatives.
+- **DeFi and Payments:** Demonstrating how Zeta can contribute to the growth and adoption of decentralized finance and cross-chain payments.
+- **Tech for Good:** Investigating how Zeta can be used to onboard new users and promote financial inclusion in vulnerable regions.
+- **Grant Prize:** Competing for funding to further develop and - expand Zeta's capabilities.
 
-
-Cow Protocol and Uniswap V4 are employed for swaps, demonstrating versatility on Gorli, Polygon, and CELO networks during the hackathon.
-
-You can check web3 and protocol integratiosn in this repo and partners detail explanation:
-
-https://github.com/jonthdiaz/fastSwaps
+[![Prizes][prizes]]()
 
 
-Comment de Uso de Cow Swap e info de repo
-
-**User Experience and Design:**
-
-[![NFT.STORAGE][NFT.Storage]][NFT-url]
-
-The project prioritizes an enhanced user experience and design through Nouns style and vibes.
-
-This is just an example of how we implement Nouns Vibes using Lil Noun Asset Library on Figma to build the design prototype ⚡️ 
-
- <a href="https://github.com/sheva323/IstanbulHackathon">
-    <img src="images/nouns.jpeg" alt="Logo" width="2000" height="500">
-  </a>
+## Additional Partners:
 
 
- Comment de presentación y rcueros usadodsS
+### Avalanche: 
 
-By implementing this decentralized cross-chain exchange with expanded protocol support, including Uniswap V4 and CELO, we revolutionize the way users transfer funds across networks. Our approach ensures security, efficiency, and accessibility across diverse platforms, while the CELO integration provides an attractive annual incentive for users engaging with our ecosystem.
-
-In the development of the FastSwaps, we used the following technologies:
+Providing the infrastructure for receiving and sending funds via the C-Chain, using the Fuji Testnet for this development phase.
 
 
-* [![Next][Next.js]][Next-url] | React
-* [![Chakra][chakra-ui]][chakra-url] | BOS Near
-* [![Node][Node.js]][Node-url]
-
-Node.js 
-Mongo BD
-CELO
+[![Avax][avax]]()
 
 
-These powerful tools and frameworks have helped us create a seamless user experience and ensure the scalability and reliability of our platform.
+### The Graph: 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
--->
+Integrating with The Graph to create a subgraph that allows users to track their transaction history on-chain, ensuring transparency and peace of mind.
 
+[![Thegraph][thegraph]]()
+ 
 
-<!-- GETTING STARTED   -->
-
-# Getting Started
-
-<!--
-To get started with FastSwaps, follow these steps:
-
-1. Explore the possible swaps and select your prefered one.
-
-2. Once your agree with the swap, write down the wallet where you're want to rececive and you're going to receive the funds.
-
-3. A few minutes later, you're going to receive a Push Notification it's done, check your wallet.
-
-That's it!. The best way to get into crypto.
-
-
-## Installation 
-
-To get started with FastSwaps installation, follow these steps:
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/jonthdiaz/fastSwaps
-   ```
-2. Navigate to the project directory:
-   ```sh
-   cd fastSwaps
-   ```
-3. Install the necessary dependencies:
-   ```js
-   docker compose up
-   ```
-4.  Configure the environment variables:
-  * Rename the .env.example file to .env.
-  * Open the .env file and fill in the required configuration values.
-5. Open your web browser and visit http://localhost:3000 to access the Join application.
-
-Please note that the above steps assume you have Docker and Docker Compose installed on your machine.
-
-Enjoy using FastSwaps and stay connected with the exciting world of tech and web3 events!
+We are excited to showcase our progress and compete for the opportunity to further develop and expand our platform.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
--->
 
 <!-- CONTACT -->
 
@@ -246,126 +169,32 @@ Miguel Angel - [@MAB015](https://twitter.com/MAB015) - miguellangellbol@gmail.co
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-<!-- ACKNOWLEDGMENTS 
-
-# Acknowledgments
-
-We would like to express our gratitude to the following resources that have been invaluable in the development of FastSwaps:
-
-BOS Docs
-CELO Docs
-Base Docs
-Nouns Designer Dos
-1inch Docs
-Cow Swaps Docs
-Gnosis Chain Docs 
-
-* [Push Protocol Docs](https://docs.push.org/hub/)
-* [Polybase Docs](https://polybase.xyz/docs/introduction)
-* [Spheron Docs](https://docs.spheron.network/)
-* [ENS Docs](https://docs.ens.domains/)
-* [NFT.Storage Docs](https://nft.storage/docs/)
-* [Filecoin Docs](https://docs.filecoin.io/)
-
-These resources have provided valuable insights, tools, and inspiration throughout the development process. We appreciate their contributions to the web development community.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
--->
-
-<!-- ROADMAP -->
-# Roadmap
-
-<!--
-
-Today through FastSwaps we to send tokens effortlessly from one network to another, without the need to connect your wallet direct and without no KYC.
-
-As working Plan
-
-- [] Telegram integration
-- [] More rollups aggregators and token support
-- [] More rollups aggregators and token support
-- [] Push notification and chat integration to connect with team
-- [ ] Off-chain ramps
-
-See the [open issues](https://github.com/sheva323/IstanbulHackaton/issues) for a full list of proposed features (and known issues).
-
-And with the vision to  make crypto more accessible and inclusive, simplifying the complexities associated with cross-chain transactions.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
--->
-
-<!-- ACKNOWLEDGMENTS -->
-
-# Acknowledgments
-
-<!--
-We would like to express our gratitude to the following resources that have been invaluable in the development of Stake Garden:
-
-* [1inch Docs](https://portal.1inch.dev/documentation/authentication)
-* [Metamask SDK](https://docs.metamask.io/wallet/how-to/use-sdk/)
-* [The Graph Docs](https://thegraph.com/docs)
-* [Nouns Artwork](https://nouns.center/assets)
-
-
-<!-- * [Filecoin Docs](https://docs.filecoin.io/) 
-
-These resources have provided valuable insights, tools, and inspiration throughout the development process. We appreciate their contributions to the web development community.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
--->
-
-
 
 <!-- MARKDOWN LINKS  -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/sheva323/IstanbulHackathon.svg?style=for-the-badge&color=red
+[contributors-shield]:https://img.shields.io/github/contributors/ConstellationHackathon/zeta-dApp.svg?style=for-the-badge&color=red
+[contributors-url]: https://github.com/ConstellationHackathon/zeta-dApp/graphs/contributors
 
-[contributors-url]: https://github.com/sheva323/IstanbulHackathon/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/sheva323/IstanbulHackathon.svg?style=for-the-badge&color=white
-[forks-url]: https://github.com/sheva323/IstanbulHackathon/network/members
-[stars-shield]: https://img.shields.io/github/stars/sheva323/IstanbulHackathon.svg?style=for-the-badge&color=red
-[stars-url]: https://github.com/sheva323/IstanbulHackathon/stargazers
-[issues-shield]: https://img.shields.io/github/issues/sheva323/IstanbulHackathon.svg?style=for-the-badge&color=white
-[issues-url]: https://github.com/sheva323/IstanbulHackathon/issues
 
-<!-- 
-[license-shield]: https://img.shields.io/github/license/sheva323/JOIN.svg?style=for-the-badge
-[license-url]: https://github.com/sheva323/JOIN/blob/main/LICENSE.txt -->
+[forks-shield]: https://img.shields.io/github/forks/ConstellationHackathon/zeta-dApp.svg?style=for-the-badge&color=white
+
+[forks-url]: https://github.com/ConstellationHackathon/zeta-dApp/forks
+
+
+[stars-shield]: https://img.shields.io/github/stars/ConstellationHackathon/zeta-dApp.svg?style=for-the-badge&color=red
+[stars-url]: https://github.com/ConstellationHackathon/zeta-dApp/stargazers
+
+[issues-shield]: https://img.shields.io/github/issues/ConstellationHackathon/zeta-dApp.svg?style=for-the-badge&color=white
+[issues-url]: https://github.com/ConstellationHackathon/zeta-dApp/issues
 
 <!-- IMAGES -->
 
 [product-screenshot]: product.png
-
-<!-- SPONSORS -->
-
-[NEAR.org]:https://img.shields.io/badge/Near-FFFFFF?style=for-the-badge&logo=near&logoColor=black
-[NEAR-url]:https://near.org/
-[Uniswap.org]:https://img.shields.io/badge/Uniswap-e03dc1?style=for-the-badge&logo=push&logoColor=white
-[Uniswap-url]:https://docs.uniswap.org/
-[Push.org]:https://img.shields.io/badge/push-e03dc1?style=for-the-badge&logo=push&logoColor=white
-[Push-url]:https://push.org
-[Push.org]:https://img.shields.io/badge/push-e03dc1?style=for-the-badge&logo=push&logoColor=white
-[Push-url]:https://push.org
-[NFT.Storage]:https://img.shields.io/badge/nft.storage-EE4116?style=for-the-badge&logo=nftdotstorage&logoColor=white
-[NFT-url]:https://nft.storage
-[Spheron.network]:https://img.shields.io/badge/spheron-0000ff?style=for-the-badge&logo=spheron&logoColor=blue
-[Spheron-url]:https://spheron.network/
-[Ens.domains]:https://img.shields.io/badge/ens-4f81fe?style=for-the-badge&logo=ens&logoColor=blue
-[Ens-url]:https://ens.domains/
-[Filecoin.io]:https://img.shields.io/badge/filecoin-40bec8?style=for-the-badge&logo=filecoin&logoColor=blue
-[Filecoin-url]:https://filecoin.io/
-
-<!-- TOOLS AND FRAMEWORKS  -->
+[prizes]: prizes.png
+[prizes2]: prizes2.png
+[chainlink]: chainlink.jpeg
+[avax]: avax.jpeg
+[thegraph]: thegraph.jpeg
 
 
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[chakra-ui]:https://img.shields.io/badge/chakra-2ABFB3?style=for-the-badge&logo=chakraui&logoColor=white
-[chakra-url]:https://chakra-ui.com
-[Node.js]:https://img.shields.io/badge/node.js-333333?style=for-the-badge&logo=nodedotjs&logoColor=689F63
-[Node-url]:https://nodejs.org/en
-
-<!-- We're back, booom> -->
+<!-- Step by step learning and getting better :fire: > -->
