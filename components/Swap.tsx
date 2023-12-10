@@ -1,9 +1,9 @@
 import React, { useState, ChangeEvent, useEffect } from "react";
 import InitialModal from "./InitialModal";
 import Image from "next/image";
-import ResponseModal from "./responseModal";
 import MovementsTable from "@/components/MovementsTable";
 import { IconClose, IconRight_2 } from "./Icon";
+import ResponseModal from "./ResponseModal";
 
 const Swap = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
